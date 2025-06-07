@@ -7,7 +7,7 @@ import {
   Plus, 
   Minus, 
   X, 
-  ShoppingCart,
+  Zap,
   Heart,
   Apple,
   Coffee,
@@ -16,90 +16,51 @@ import {
 } from 'lucide-react';
 import Header from '../../components/Header/Header';
 import styles from './Market.module.scss';
+import { useDispatch } from 'react-redux';
+import { setLoading1 } from '@/state/loading/loading';
+import { apiAddProduct, apiGetProducts } from '@/Normal/API/product';
 
 interface Product {
   id: string;
   name: string;
-  description: string;
   price: number;
-  category: string;
-  icon: React.ComponentType;
-  tag?: string;
-}
-
-interface CartItem extends Product {
-  quantity: number;
+  image: string;
+  category: string | "無分類";
 }
 
 const Market: React.FC = () => {
+  const dispatch = useDispatch();
   const [searchTerm, setSearchTerm] = useState('');
   const [activeFilter, setActiveFilter] = useState('全部');
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
   const [quantity, setQuantity] = useState(1);
-  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [userBalance] = useState(1250); // 模擬用戶餘額
+  const [products, setProducts] = useState<Product[]>([]);
 
-  // 模擬商品數據
-  const products: Product[] = [
-    {
-      id: '1',
-      name: '愛心便當',
-      description: '營養均衡的熱騰騰便當，包含主菜、配菜和湯品',
-      price: 80,
-      category: '餐飲',
-      icon: Package,
-      tag: '熱門'
-    },
-    {
-      id: '2',
-      name: '營養飲品',
-      description: '高蛋白營養補充飲品，適合老人和兒童',
-      price: 45,
-      category: '飲品',
-      icon: Coffee
-    },
-    {
-      id: '3',
-      name: '日用品包',
-      description: '包含洗髮精、牙刷、牙膏等基本生活用品',
-      price: 120,
-      category: '日用品',
-      icon: Gift,
-      tag: '實用'
-    },
-    {
-      id: '4',
-      name: '學習用品',
-      description: '筆記本、鉛筆、橡皮擦等學童必需用品',
-      price: 200,
-      category: '文具',
-      icon: Book
-    },
-    {
-      id: '5',
-      name: '新鮮水果',
-      description: '當季新鮮水果組合，富含維生素',
-      price: 150,
-      category: '食品',
-      icon: Apple,
-      tag: '新鮮'
-    },
-    {
-      id: '6',
-      name: '保暖衣物',
-      description: '冬季保暖外套，適合各年齡層',
-      price: 300,
-      category: '衣物',
-      icon: Gift
+  const handleGetProducts = async () => {
+    try {
+      dispatch(setLoading1(true));
+      const res = await apiGetProducts();
+      setProducts(res);
+    } catch ( err ) {
+      console.error('獲取商品失敗:', err);
+      alert('無法獲取商品列表，請稍後再試。');
+    } finally {
+      dispatch(setLoading1(false));
     }
-  ];
+  }
+
+  useEffect(() => {
+    handleGetProducts();
+  }, [])
+  
 
   const filterCategories = ['全部', '餐飲', '日用品', '文具', '食品', '衣物', '飲品'];
 
   // 篩選商品
   const filteredProducts = products.filter(product => {
-    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-                         product.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesFilter = activeFilter === '全部' || product.category === activeFilter;
     return matchesSearch && matchesFilter;
   });
@@ -122,49 +83,81 @@ const Market: React.FC = () => {
     setQuantity(prev => Math.max(1, prev + change));
   };
 
-  // 加入購物車
-  const handleAddToCart = () => {
+  // 直接購買
+  const handleDirectPurchase = async () => {
     if (!selectedProduct) return;
 
-    const existingItem = cartItems.find(item => item.id === selectedProduct.id);
+    const totalCost = selectedProduct.price * quantity;
     
-    if (existingItem) {
-      setCartItems(prev => 
-        prev.map(item => 
-          item.id === selectedProduct.id 
-            ? { ...item, quantity: item.quantity + quantity }
-            : item
-        )
-      );
-    } else {
-      setCartItems(prev => [...prev, { ...selectedProduct, quantity }]);
+    if (totalCost > userBalance) {
+      alert('餘額不足，請先購買一幣之力！');
+      return;
     }
 
-    handleCloseModal();
-    alert(`已將 ${selectedProduct.name} x${quantity} 加入愛心購物車！`);
+    const confirmPurchase = window.confirm(
+      `確認購買 ${selectedProduct.name} x${quantity}\n` +
+      `總計：${totalCost.toLocaleString()} 一幣之力`
+    );
+
+    if (confirmPurchase) {
+      handleCloseModal();
+      try {
+        dispatch(setLoading1(true));
+        await apiAddProduct(selectedProduct.id, quantity);
+        alert(`購買成功！${selectedProduct.name} 將盡快為您處理`);
+        // 這裡可以添加成功購買後的其他處理邏輯，比如更新購物車狀態等
+      } catch ( err ) {
+        console.error('購買失敗:', err);
+        alert('購買失敗，請稍後再試。');
+      } finally {
+        dispatch(setLoading1(false));
+      }
+      
+    }
   };
 
-  // 快速加入購物車（商品卡片上的 + 按鈕）
-  const handleQuickAdd = (product: Product, e: React.MouseEvent) => {
+  // 快速購買（商品卡片上的 + 按鈕）
+  const handleQuickPurchase = (product: Product, e: React.MouseEvent) => {
     e.stopPropagation();
     
-    const existingItem = cartItems.find(item => item.id === product.id);
-    
-    if (existingItem) {
-      setCartItems(prev => 
-        prev.map(item => 
-          item.id === product.id 
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        )
-      );
-    } else {
-      setCartItems(prev => [...prev, { ...product, quantity: 1 }]);
+    if (product.price > userBalance) {
+      alert('餘額不足，請先購買一幣之力！');
+      return;
+    }
+
+    const confirmPurchase = window.confirm(
+      `確認購買 ${product.name} x1\n` +
+      `總計：${product.price} 一幣之力`
+    );
+
+    if (confirmPurchase) {
+      // 這裡會實際調用購買 API
+      alert(`購買成功！${product.name} 將盡快為您處理`);
+    }
+  };
+
+  // 獲取商品圖標（作為後備方案）
+  const getProductIcon = (category: string) => {
+    switch (category) {
+      case '餐飲':
+        return Package;
+      case '飲品':
+        return Coffee;
+      case '日用品':
+        return Gift;
+      case '文具':
+        return Book;
+      case '食品':
+        return Apple;
+      case '衣物':
+        return ShoppingBag;
+      default:
+        return Package;
     }
   };
 
   // 計算購物車總數量
-  const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
+  // const cartCount = cartItems.reduce((total, item) => total + item.quantity, 0);
 
   // 點擊遮罩關閉 Modal
   const handleOverlayClick = (e: React.MouseEvent) => {
@@ -173,7 +166,7 @@ const Market: React.FC = () => {
     }
   };
 
-  // 阻止滾動穿透
+  // 阻止滾动穿透
   useEffect(() => {
     if (isModalOpen) {
       document.body.style.overflow = 'hidden';
@@ -221,7 +214,7 @@ const Market: React.FC = () => {
         {/* 商品網格 */}
         <section className={styles.productsGrid}>
           {filteredProducts.map(product => {
-            const IconComponent = product.icon;
+            const IconComponent = getProductIcon(product.category);
             return (
               <div 
                 key={product.id} 
@@ -229,14 +222,24 @@ const Market: React.FC = () => {
                 onClick={() => handleProductClick(product)}
               >
                 <div className={styles.productImage}>
-                  <IconComponent />
-                  {product.tag && (
-                    <div className={styles.productTag}>{product.tag}</div>
-                  )}
+                  {product.image ? (
+                    <img 
+                      src={product.image} 
+                      alt={product.name}
+                      onError={(e) => {
+                        // 如果圖片載入失敗，顯示圖標
+                        e.currentTarget.style.display = 'none';
+                        e.currentTarget.nextElementSibling?.classList.remove(styles.hidden);
+                      }}
+                    />
+                  ) : null}
+                  <div className={`${styles.iconFallback} ${product.image ? styles.hidden : ''}`}>
+                    <IconComponent />
+                  </div>
                 </div>
                 <div className={styles.productInfo}>
                   <div className={styles.productName}>{product.name}</div>
-                  <div className={styles.productDesc}>{product.description}</div>
+                  <div className={styles.productCategory}>{product.category}</div>
                   <div className={styles.productPrice}>
                     <span className={styles.price}>
                       <Coins size={14} style={{ marginRight: '4px' }} />
@@ -244,7 +247,7 @@ const Market: React.FC = () => {
                     </span>
                     <button 
                       className={styles.addBtn}
-                      onClick={(e) => handleQuickAdd(product, e)}
+                      onClick={(e) => handleQuickPurchase(product, e)}
                     >
                       <Plus />
                     </button>
@@ -269,12 +272,24 @@ const Market: React.FC = () => {
             
             <div className={styles.modalContent}>
               <div className={styles.modalProductImage}>
-                <selectedProduct.icon />
+                {selectedProduct.image ? (
+                  <img 
+                    src={selectedProduct.image} 
+                    alt={selectedProduct.name}
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                      e.currentTarget.nextElementSibling?.classList.remove(styles.hidden);
+                    }}
+                  />
+                ) : null}
+                <div className={`${styles.modalIconFallback} ${selectedProduct.image ? styles.hidden : ''}`}>
+                  {React.createElement(getProductIcon(selectedProduct.category))}
+                </div>
               </div>
               
               <div className={styles.modalProductInfo}>
                 <h3 className={styles.modalProductName}>{selectedProduct.name}</h3>
-                <p className={styles.modalProductDesc}>{selectedProduct.description}</p>
+                <div className={styles.modalProductCategory}>分類：{selectedProduct.category}</div>
                 <div className={styles.modalProductPrice}>
                   <Coins size={18} style={{ marginRight: '6px' }} />
                   {selectedProduct.price}幣
@@ -282,7 +297,7 @@ const Market: React.FC = () => {
               </div>
               
               <div className={styles.quantitySelector}>
-                <span className={styles.quantityLabel}>兌換數量</span>
+                <span className={styles.quantityLabel}>購買數量</span>
                 <div className={styles.quantityControls}>
                   <button 
                     className={styles.quantityBtn}
@@ -311,11 +326,12 @@ const Market: React.FC = () => {
                 </div>
               </div>
               <button 
-                className={styles.addToCartBtn}
-                onClick={handleAddToCart}
+                className={styles.purchaseBtn}
+                onClick={handleDirectPurchase}
+                disabled={(selectedProduct.price * quantity) > userBalance}
               >
-                <ShoppingCart />
-                加入愛心購物車
+                <Zap />
+                立即購買
               </button>
             </div>
           </div>

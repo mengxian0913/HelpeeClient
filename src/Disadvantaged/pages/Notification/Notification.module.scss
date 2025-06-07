@@ -1,0 +1,598 @@
+// 色彩變數 - 溫暖關懷主題
+$primary-color: #52C41A;
+$primary-light: #73D13D;
+$secondary-color: #FFB800;
+$accent-color: #17A2B8;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$white: #ffffff;
+$background-light: #F8FAFC;
+$border-color: #E0E0E0;
+$success-color: #52C41A;
+$warning-color: #FFB800;
+$info-color: #17A2B8;
+$error-color: #FF4757;
+
+// 間距變數
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+
+// 圓角變數
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// 陰影變數
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+.notificationPage {
+  min-height: 100vh;
+  background: $background-light;
+  padding-bottom: 80px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+// 頁面標題區域
+.pageHeader {
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  margin: 0 (-$spacing-lg) $spacing-lg;
+  padding: $spacing-xl $spacing-lg;
+  color: $white;
+  text-align: center;
+  box-shadow: $shadow-sm;
+}
+
+.pageTitle {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: $spacing-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    stroke-width: 2;
+  }
+}
+
+.pageSubtitle {
+  font-size: 14px;
+  opacity: 0.9;
+}
+
+// 未讀通知統計
+.unreadStats {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.unreadInfo {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.unreadIcon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, $info-color 0%, #52D2E8 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.unreadText {
+  .unreadCount {
+    font-size: 18px;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .unreadLabel {
+    font-size: 12px;
+    color: $text-secondary;
+  }
+}
+
+.markAllRead {
+  padding: $spacing-sm $spacing-lg;
+  background: none;
+  border: 1px solid $primary-color;
+  color: $primary-color;
+  border-radius: $radius-sm;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: $primary-color;
+    color: $white;
+  }
+}
+
+// 篩選區域
+.filterSection {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.filterTabs {
+  display: flex;
+  gap: $spacing-sm;
+  overflow-x: auto;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.filterTab {
+  flex-shrink: 0;
+  padding: $spacing-sm $spacing-lg;
+  background: $background-light;
+  color: $text-secondary;
+  border: 2px solid transparent;
+  border-radius: $radius-lg;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: rgba(82, 196, 26, 0.1);
+    color: $primary-color;
+    border-color: rgba(82, 196, 26, 0.2);
+  }
+  
+  &.active {
+    background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+    color: $white;
+    border-color: $primary-color;
+    box-shadow: 0 2px 8px rgba(82, 196, 26, 0.3);
+  }
+}
+
+// 通知列表
+.notificationList {
+  background: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+}
+
+.notificationItem {
+  display: flex;
+  padding: $spacing-lg;
+  border-bottom: 1px solid $border-color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  &:hover {
+    background: rgba(82, 196, 26, 0.03);
+  }
+  
+  &.unread {
+    background: rgba(82, 196, 26, 0.05);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: $primary-color;
+    }
+  }
+}
+
+.notificationIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: $spacing-md;
+  flex-shrink: 0;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    color: $white;
+    stroke-width: 2;
+  }
+  
+  &.donation {
+    background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+  }
+  
+  &.system {
+    background: linear-gradient(135deg, $info-color 0%, #52D2E8 100%);
+  }
+  
+  &.reminder {
+    background: linear-gradient(135deg, $warning-color 0%, #FFD93D 100%);
+  }
+  
+  &.emergency {
+    background: linear-gradient(135deg, $error-color 0%, #FF6B9D 100%);
+  }
+}
+
+.notificationContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.notificationHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $spacing-sm;
+}
+
+.notificationTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: $text-primary;
+  line-height: 1.3;
+  margin-bottom: $spacing-xs;
+}
+
+.notificationTime {
+  font-size: 11px;
+  color: $text-secondary;
+  flex-shrink: 0;
+  margin-left: $spacing-sm;
+}
+
+.notificationMessage {
+  font-size: 13px;
+  color: $text-secondary;
+  line-height: 1.4;
+  margin-bottom: $spacing-sm;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.notificationMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.notificationCategory {
+  font-size: 11px;
+  padding: 2px $spacing-sm;
+  border-radius: 10px;
+  font-weight: 600;
+  
+  &.donation {
+    background: rgba(82, 196, 26, 0.1);
+    color: $success-color;
+  }
+  
+  &.system {
+    background: rgba(23, 162, 184, 0.1);
+    color: $info-color;
+  }
+  
+  &.reminder {
+    background: rgba(255, 184, 0, 0.1);
+    color: $warning-color;
+  }
+  
+  &.emergency {
+    background: rgba(255, 71, 87, 0.1);
+    color: $error-color;
+  }
+}
+
+.unreadBadge {
+  width: 8px;
+  height: 8px;
+  background: $primary-color;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+// Modal 樣式
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: $spacing-lg;
+  backdrop-filter: blur(5px);
+}
+
+.modal {
+  background: $white;
+  border-radius: $radius-lg;
+  width: 100%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: $shadow-md;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+.modalHeader {
+  padding: $spacing-xl;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: $spacing-md;
+}
+
+.modalTitleSection {
+  flex: 1;
+  min-width: 0;
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+  line-height: 1.3;
+}
+
+.modalTime {
+  font-size: 13px;
+  color: $text-secondary;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2;
+  }
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: $background-light;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: $text-secondary;
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+  }
+  
+  &:hover {
+    background: $border-color;
+    color: $text-primary;
+  }
+}
+
+.modalContent {
+  padding: $spacing-xl;
+}
+
+.modalMessage {
+  font-size: 15px;
+  color: $text-primary;
+  line-height: 1.6;
+  margin-bottom: $spacing-lg;
+  white-space: pre-line;
+}
+
+.modalDetails {
+  background: $background-light;
+  border-radius: $radius-sm;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+}
+
+.detailItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-sm;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.detailLabel {
+  font-size: 13px;
+  color: $text-secondary;
+  font-weight: 500;
+}
+
+.detailValue {
+  font-size: 13px;
+  color: $text-primary;
+  font-weight: 600;
+}
+
+.modalActions {
+  padding: $spacing-lg $spacing-xl;
+  border-top: 1px solid $border-color;
+  display: flex;
+  gap: $spacing-md;
+}
+
+.actionBtn {
+  flex: 1;
+  padding: $spacing-md $spacing-lg;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-xs;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+  }
+  
+  &.primary {
+    background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+    color: $white;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
+    }
+  }
+  
+  &.secondary {
+    background: $background-light;
+    color: $text-secondary;
+    border: 1px solid $border-color;
+    
+    &:hover {
+      background: $border-color;
+      color: $text-primary;
+    }
+  }
+}
+
+// 空狀態
+.emptyState {
+  text-align: center;
+  padding: $spacing-xl 0;
+  color: $text-secondary;
+  
+  svg {
+    width: 60px;
+    height: 60px;
+    margin-bottom: $spacing-lg;
+    opacity: 0.5;
+  }
+  
+  .emptyTitle {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: $spacing-sm;
+  }
+  
+  .emptyDesc {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+// 動畫
+@keyframes modalSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9) translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+// 響應式設計
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 $spacing-md;
+  }
+  
+  .pageHeader {
+    margin: 0 (-$spacing-md) $spacing-lg;
+    padding: $spacing-lg $spacing-md;
+  }
+  
+  .pageTitle {
+    font-size: 18px;
+  }
+  
+  .unreadStats {
+    padding: $spacing-md;
+  }
+  
+  .filterSection {
+    padding: $spacing-md;
+  }
+  
+  .notificationItem {
+    padding: $spacing-md;
+  }
+  
+  .modalOverlay {
+    padding: $spacing-md;
+  }
+  
+  .modalHeader {
+    padding: $spacing-lg;
+  }
+  
+  .modalContent {
+    padding: $spacing-lg;
+  }
+  
+  .modalActions {
+    padding: $spacing-md $spacing-lg;
+    flex-direction: column;
+  }
+}

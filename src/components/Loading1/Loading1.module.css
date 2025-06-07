@@ -1,252 +1,158 @@
-.loadingOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  -webkit-backdrop-filter: blur(4px);
-          backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  animation: fadeIn 0.3s ease-out;
-}
-
 .loadingContainer {
-  background: #ffffff;
-  border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #E3F2FD 0%, #FFF3E0 100%);
   padding: 20px;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   text-align: center;
-  min-width: 200px;
-  max-width: 300px;
-  animation: slideUp 0.4s ease-out;
 }
 
-.heartLoader {
-  margin-bottom: 16px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-}
-
-.heartContainer {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.heartIcon {
-  width: 36px;
-  height: 36px;
-  color: #4A90E2;
-  stroke-width: 2;
-  animation: heartBeat 1.5s ease-in-out infinite;
-  filter: drop-shadow(0 2px 8px rgba(74, 144, 226, 0.3));
-}
-
-.heartIcon.filled {
-  fill: currentColor;
-}
-
-.heartRing {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border: 3px solid transparent;
-  border-top: 3px solid #4A90E2;
+.logo {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, #4A90E2 0%, #7CB4FF 100%);
   border-radius: 50%;
-  animation: spin 2s linear infinite;
-  opacity: 0.6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
 }
-
-.heartRing.secondary {
+.logo svg {
   width: 40px;
   height: 40px;
-  border-color: transparent;
-  border-top: 2px solid #7CB4FF;
-  animation: spin 1.5s linear infinite reverse;
-}
-
-.dotsLoader {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-bottom: 16px;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  background: #4A90E2;
-  border-radius: 50%;
-  animation: dotPulse 1.4s ease-in-out infinite both;
-}
-.dot:nth-child(1) {
-  animation-delay: -0.32s;
-}
-.dot:nth-child(2) {
-  animation-delay: -0.16s;
-}
-.dot:nth-child(3) {
-  animation-delay: 0s;
-}
-
-.waveLoader {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 4px;
-  height: 40px;
-  margin-bottom: 16px;
-}
-
-.wave {
-  width: 4px;
-  height: 20px;
-  background: linear-gradient(to top, #4A90E2, #7CB4FF);
-  border-radius: 2px;
-  animation: waveAnimation 1.2s ease-in-out infinite;
-}
-.wave:nth-child(1) {
-  animation-delay: 0s;
-}
-.wave:nth-child(2) {
-  animation-delay: 0.1s;
-}
-.wave:nth-child(3) {
-  animation-delay: 0.2s;
-}
-.wave:nth-child(4) {
-  animation-delay: 0.3s;
-}
-.wave:nth-child(5) {
-  animation-delay: 0.4s;
-}
-
-.circularProgress {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  margin: 0 auto 16px;
-}
-
-.progressCircle {
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-}
-
-.progressTrack {
-  fill: none;
-  stroke: rgba(74, 144, 226, 0.1);
-  stroke-width: 4;
-}
-
-.progressBar {
-  fill: none;
-  stroke: #4A90E2;
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-dasharray: 157;
-  stroke-dashoffset: 157;
-  animation: progressSpin 2s ease-in-out infinite;
-}
-
-.progressIcon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 24px;
-  height: 24px;
-  color: #4A90E2;
+  color: #ffffff;
   stroke-width: 2;
 }
 
-.loadingText {
-  font-size: 16px;
-  font-weight: 600;
+.appName {
+  font-size: 28px;
+  font-weight: 700;
   color: #2C3E50;
   margin-bottom: 8px;
 }
 
-.loadingDesc {
-  font-size: 14px;
+.appSubtitle {
+  font-size: 16px;
   color: #7F8C8D;
-  line-height: 1.4;
+  margin-bottom: 30px;
 }
 
-.loadingContainer.small {
-  padding: 16px;
-  min-width: 150px;
-}
-.loadingContainer.small .heartIcon {
-  width: 28px;
-  height: 28px;
-}
-.loadingContainer.small .loadingText {
-  font-size: 14px;
-}
-.loadingContainer.small .loadingDesc {
-  font-size: 12px;
+.stepsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 30px;
+  gap: 0;
 }
 
-.loadingContainer.large {
-  padding: 30px;
-  min-width: 250px;
+.stepWrapper {
+  display: flex;
+  align-items: center;
 }
-.loadingContainer.large .heartIcon {
+
+.stepItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  z-index: 2;
+}
+
+.stepIcon {
   width: 48px;
   height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  border: 3px solid #E0E0E0;
+  color: #7F8C8D;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
-.loadingContainer.large .loadingText {
-  font-size: 18px;
+.stepIcon svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2.5;
+}
+.stepIcon .stepNumber {
+  font-size: 16px;
+  font-weight: 700;
 }
 
-.loadingContainer.success .heartIcon,
-.loadingContainer.success .heartRing,
-.loadingContainer.success .dot,
-.loadingContainer.success .wave,
-.loadingContainer.success .progressBar {
-  color: #52C41A;
+.stepLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: #7F8C8D;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  min-width: 60px;
+}
+
+.stepConnector {
+  width: 60px;
+  height: 3px;
+  background: #E0E0E0;
+  margin: 0 -4px;
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
+}
+.stepConnector.completed {
+  background: #52C41A;
+}
+
+.stepItem.active .stepIcon {
+  border-color: #4A90E2;
+  background: #4A90E2;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+}
+.stepItem.active .stepLabel {
+  color: #4A90E2;
+  font-weight: 600;
+}
+
+.stepItem.completed .stepIcon {
   border-color: #52C41A;
   background: #52C41A;
-  stroke: #52C41A;
+  color: #ffffff;
+  box-shadow: 0 4px 15px rgba(82, 196, 26, 0.4);
 }
-.loadingContainer.success .wave {
-  background: linear-gradient(to top, #52C41A, #73D13D);
-}
-
-.loadingContainer.warning .heartIcon,
-.loadingContainer.warning .heartRing,
-.loadingContainer.warning .dot,
-.loadingContainer.warning .wave,
-.loadingContainer.warning .progressBar {
-  color: #FFB800;
-  border-color: #FFB800;
-  background: #FFB800;
-  stroke: #FFB800;
-}
-.loadingContainer.warning .wave {
-  background: linear-gradient(to top, #FFB800, #FFD93D);
+.stepItem.completed .stepLabel {
+  color: #52C41A;
+  font-weight: 600;
 }
 
-@keyframes fadeIn {
+.loadingText {
+  font-size: 18px;
+  font-weight: 600;
+  color: #4A90E2;
+  margin-bottom: 20px;
+}
+
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
   from {
-    opacity: 0;
+    transform: rotate(0deg);
   }
   to {
-    opacity: 1;
+    transform: rotate(360deg);
   }
 }
-@keyframes slideUp {
+.stepItem {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -256,60 +162,47 @@
     transform: translateY(0);
   }
 }
-@keyframes heartBeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-}
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-@keyframes dotPulse {
-  0%, 80%, 100% {
-    transform: scale(0.5);
-    opacity: 0.5;
-  }
-  40% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-@keyframes waveAnimation {
-  0%, 40%, 100% {
-    transform: scaleY(1);
-  }
-  20% {
-    transform: scaleY(1.5);
-  }
-}
-@keyframes progressSpin {
-  0% {
-    stroke-dashoffset: 157;
-  }
-  50% {
-    stroke-dashoffset: 39.25;
-  }
-  100% {
-    stroke-dashoffset: 157;
-  }
-}
 @media screen and (max-width: 480px) {
   .loadingContainer {
-    margin: 0 16px;
-    min-width: 180px;
+    padding: 16px;
+  }
+  .appName {
+    font-size: 24px;
+  }
+  .appSubtitle {
+    font-size: 14px;
+  }
+  .stepsContainer {
+    margin-bottom: 20px;
+  }
+  .stepIcon {
+    width: 40px;
+    height: 40px;
+  }
+  .stepIcon svg {
+    width: 16px;
+    height: 16px;
+  }
+  .stepIcon .stepNumber {
+    font-size: 14px;
+  }
+  .stepLabel {
+    font-size: 12px;
+    min-width: 50px;
+  }
+  .stepConnector {
+    width: 40px;
   }
   .loadingText {
-    font-size: 15px;
+    font-size: 16px;
   }
-  .loadingDesc {
-    font-size: 13px;
+}
+@media screen and (max-width: 320px) {
+  .stepConnector {
+    width: 30px;
+  }
+  .stepLabel {
+    font-size: 11px;
+    min-width: 40px;
   }
 }/*# sourceMappingURL=Loading1.module.css.map */

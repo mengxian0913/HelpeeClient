@@ -63,12 +63,12 @@ const Header: React.FC<HeaderProps> = ({
               捐贈
             </button>
 
-            <button className={styles.cartBtn} onClick={() => navigation('/cart')}>
+            {/* <button className={styles.cartBtn} onClick={() => navigation('/cart')}>
               <ShoppingCart />
               {cartCount > 0 && (
                 <span className={styles.cartBadge}>{cartCount}</span>
               )}
-            </button>
+            </button> */}
 
             <button className={styles.userAvatar} onClick={() => navigation('/profile') } >
               <User />

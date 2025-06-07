@@ -137,7 +137,7 @@ const Home: React.FC = () => {
         <section className={styles.recentSection}>
           <div className={styles.recentHeader}>
             <h3 className={styles.recentTitle}>最近收到的補助代幣</h3>
-            <a href="/records" className={styles.viewAllBtn}>
+            <a href="/receive" className={styles.viewAllBtn}>
               查看全部 <ArrowRight />
             </a>
           </div>

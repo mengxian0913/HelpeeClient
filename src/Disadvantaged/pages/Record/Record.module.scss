@@ -1,0 +1,480 @@
+// 色彩變數 - 溫暖關懷主題
+$primary-color: #52C41A;
+$primary-light: #73D13D;
+$secondary-color: #FFB800;
+$accent-color: #17A2B8;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$white: #ffffff;
+$background-light: #F8FAFC;
+$border-color: #E0E0E0;
+$success-color: #52C41A;
+$warning-color: #FFB800;
+
+// 間距變數
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+
+// 圓角變數
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// 陰影變數
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+.recordPage {
+  min-height: 100vh;
+  background: $background-light;
+  padding-bottom: 80px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+// 頂部統計卡片
+.summaryCard {
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  margin-top: 20px;
+  margin-bottom: $spacing-lg;
+  color: $white;
+  box-shadow: $shadow-md;
+  text-align: center;
+}
+
+.summaryIcon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-lg;
+  
+  svg {
+    width: 30px;
+    height: 30px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.summaryTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: $spacing-sm;
+}
+
+.summaryAmount {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: $spacing-sm;
+}
+
+.summaryDesc {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: $spacing-lg;
+}
+
+.summaryStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+}
+
+.statItem {
+  text-align: center;
+  
+  .statNumber {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .statLabel {
+    font-size: 11px;
+    opacity: 0.8;
+  }
+}
+
+// 月份滾動條
+.monthScrollSection {
+  background: $white;
+  margin: 0 (-$spacing-lg) $spacing-lg;
+  padding: $spacing-lg 0;
+  border-bottom: 1px solid $border-color;
+  box-shadow: $shadow-sm;
+}
+
+.monthScrollContainer {
+  padding: 0 $spacing-lg;
+}
+
+.monthScrollTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+  text-align: center;
+}
+
+.monthScrollBar {
+  display: flex;
+  gap: $spacing-sm;
+  overflow-x: auto;
+  padding: $spacing-sm 0;
+  scroll-behavior: smooth;
+  
+  &::-webkit-scrollbar {
+    height: 3px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: $background-light;
+    border-radius: 3px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: $primary-color;
+    border-radius: 3px;
+  }
+}
+
+.monthItem {
+  flex-shrink: 0;
+  padding: $spacing-md $spacing-lg;
+  background: $background-light;
+  color: $text-secondary;
+  border: 2px solid transparent;
+  border-radius: $radius-lg;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  min-width: 100px;
+  
+  .monthText {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .monthAmount {
+    font-size: 12px;
+    opacity: 0.8;
+  }
+  
+  &:hover {
+    background: rgba(82, 196, 26, 0.1);
+    color: $primary-color;
+    border-color: rgba(82, 196, 26, 0.2);
+  }
+  
+  &.active {
+    background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+    color: $white;
+    border-color: $primary-color;
+    box-shadow: 0 2px 8px rgba(82, 196, 26, 0.3);
+    
+    .monthAmount {
+      opacity: 1;
+    }
+  }
+}
+
+// 記錄列表區域
+.recordsSection {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.recordsHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+}
+
+.recordsTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.monthInfo {
+  font-size: 14px;
+  color: $text-secondary;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+  }
+}
+
+.recordItem {
+  display: flex;
+  align-items: flex-start;
+  padding: $spacing-lg 0;
+  border-bottom: 1px solid $border-color;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.recordIcon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, $accent-color 0%, #52D2E8 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: $spacing-md;
+  flex-shrink: 0;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.recordContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.recordHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $spacing-sm;
+}
+
+.recordInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.recordTitle {
+  font-size: 15px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+  line-height: 1.3;
+}
+
+.recordLocation {
+  font-size: 13px;
+  color: $text-secondary;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  margin-bottom: $spacing-xs;
+  
+  svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2;
+  }
+}
+
+.recordDate {
+  font-size: 12px;
+  color: $text-secondary;
+}
+
+.recordAmount {
+  font-size: 18px;
+  font-weight: 700;
+  color: #FF6B6B;
+  flex-shrink: 0;
+  margin-left: $spacing-sm;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    color: $secondary-color;
+  }
+}
+
+.recordDetails {
+  margin-top: $spacing-sm;
+  padding-top: $spacing-sm;
+  border-top: 1px solid rgba(224, 224, 224, 0.5);
+}
+
+.itemsList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: $spacing-xs;
+}
+
+.itemTag {
+  font-size: 11px;
+  padding: 2px $spacing-sm;
+  background: rgba(82, 196, 26, 0.1);
+  color: $primary-color;
+  border-radius: 10px;
+  font-weight: 500;
+}
+
+// 月份統計區域
+.monthStatsSection {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.monthStatsTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+  text-align: center;
+}
+
+.monthStatsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-lg;
+}
+
+.monthStatItem {
+  text-align: center;
+  padding: $spacing-md;
+  background: $background-light;
+  border-radius: $radius-sm;
+  
+  .monthStatIcon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto $spacing-sm;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+      color: $white;
+      stroke-width: 2;
+    }
+  }
+  
+  .monthStatNumber {
+    font-size: 18px;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .monthStatLabel {
+    font-size: 12px;
+    color: $text-secondary;
+  }
+}
+
+// 空狀態
+.emptyState {
+  text-align: center;
+  padding: $spacing-xl 0;
+  color: $text-secondary;
+  
+  svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: $spacing-md;
+    opacity: 0.5;
+  }
+  
+  .emptyTitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: $spacing-sm;
+  }
+  
+  .emptyDesc {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+// 響應式設計
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 $spacing-md;
+  }
+  
+  .monthScrollSection {
+    margin: 0 (-$spacing-md) $spacing-lg;
+  }
+  
+  .monthScrollContainer {
+    padding: 0 $spacing-md;
+  }
+  
+  .summaryStats {
+    gap: $spacing-md;
+  }
+  
+  .statItem .statNumber {
+    font-size: 18px;
+  }
+  
+  .monthItem {
+    min-width: 80px;
+    padding: $spacing-sm $spacing-md;
+    
+    .monthText {
+      font-size: 14px;
+    }
+    
+    .monthAmount {
+      font-size: 11px;
+    }
+  }
+  
+  .recordHeader {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .recordAmount {
+    margin-left: 0;
+    margin-top: $spacing-xs;
+    align-self: flex-end;
+  }
+  
+  .monthStatsGrid {
+    grid-template-columns: 1fr;
+  }
+}

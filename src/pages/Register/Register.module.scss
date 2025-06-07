@@ -1,0 +1,459 @@
+// 色彩變數
+$primary-color: #4A90E2;
+$primary-light: #7CB4FF;
+$success-color: #52C41A;
+$error-color: #FF4D4F;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$text-dark: #34495E;
+$border-color: #E0E0E0;
+$background-gradient-start: #E3F2FD;
+$background-gradient-end: #FFF3E0;
+$white: #ffffff;
+$white-95: rgba(255, 255, 255, 0.95);
+
+// 間距變數
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 15px;
+$spacing-lg: 20px;
+$spacing-xl: 30px;
+$spacing-2xl: 40px;
+
+// 圓角變數
+$radius-sm: 10px;
+$radius-md: 15px;
+$radius-lg: 20px;
+$radius-full: 50%;
+
+// 陰影變數
+$shadow-sm: 0 5px 15px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
+$shadow-primary: 0 5px 15px rgba(74, 144, 226, 0.3);
+$shadow-primary-hover: 0 6px 20px rgba(74, 144, 226, 0.4);
+
+.registerPage {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, $background-gradient-start 0%, $background-gradient-end 100%);
+  padding: $spacing-lg;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Microsoft JhengHei', sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  background: $white-95;
+  border-radius: $radius-lg;
+  padding: $spacing-2xl;
+  box-shadow: $shadow-md;
+  backdrop-filter: blur(10px);
+}
+
+// Logo 區塊
+.logoSection {
+  text-align: center;
+  margin-bottom: $spacing-xl;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: $radius-full;
+  margin: 0 auto $spacing-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: $shadow-primary;
+  
+  svg {
+    width: 35px;
+    height: 35px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.appName {
+  font-size: 26px;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.appSubtitle {
+  font-size: 14px;
+  color: $text-secondary;
+  margin-bottom: $spacing-xl;
+}
+
+// 身份選擇區塊
+.userTypeSection {
+  margin-bottom: $spacing-xl;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-dark;
+  margin-bottom: $spacing-md;
+  text-align: center;
+}
+
+.sectionDesc {
+  font-size: 14px;
+  color: $text-secondary;
+  text-align: center;
+  margin-bottom: $spacing-lg;
+  line-height: 1.5;
+}
+
+.userTypeButtons {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-md;
+}
+
+.userTypeBtn {
+  padding: $spacing-lg;
+  border: 2px solid $border-color;
+  border-radius: $radius-md;
+  background: $white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+  text-align: left;
+  
+  &:hover {
+    border-color: $primary-color;
+    transform: translateY(-2px);
+    box-shadow: $shadow-sm;
+  }
+  
+  &.active {
+    border-color: $primary-color;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.05) 0%, rgba(124, 180, 255, 0.05) 100%);
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  }
+}
+
+.userTypeIcon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.userTypeContent {
+  flex: 1;
+}
+
+.userTypeLabel {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.userTypeDesc {
+  font-size: 13px;
+  color: $text-secondary;
+  line-height: 1.4;
+}
+
+// 表單區塊
+.formSection {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+  
+  &.active {
+    opacity: 1;
+    max-height: 1000px;
+    animation: slideIn 0.3s ease-out;
+  }
+}
+
+.formGroup {
+  margin-bottom: $spacing-lg;
+}
+
+.formLabel {
+  display: block;
+  font-size: 14px;
+  color: $text-dark;
+  margin-bottom: $spacing-sm;
+  font-weight: 500;
+}
+
+.formInput {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid $border-color;
+  border-radius: $radius-sm;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: $white;
+  
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  }
+  
+  &.error {
+    border-color: $error-color;
+    
+    &:focus {
+      box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.1);
+    }
+  }
+  
+  &::placeholder {
+    color: lighten($text-secondary, 15%);
+  }
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $text-secondary;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    width: 18px;
+    height: 18px;
+    stroke-width: 2;
+  }
+  
+  &:hover {
+    color: $text-primary;
+  }
+}
+
+.errorText {
+  display: block;
+  font-size: 12px;
+  color: $error-color;
+  margin-top: $spacing-xs;
+  font-weight: 500;
+}
+
+.inputHint {
+  font-size: 12px;
+  color: $text-secondary;
+  margin-top: $spacing-xs;
+}
+
+// 條款同意區塊
+.termsSection {
+  margin: $spacing-xl 0;
+  padding: $spacing-lg;
+  background: rgba(74, 144, 226, 0.03);
+  border-radius: $radius-sm;
+  border: 1px solid rgba(74, 144, 226, 0.1);
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-md;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.checkbox {
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  accent-color: $primary-color;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: 13px;
+  color: $text-dark;
+  line-height: 1.5;
+  cursor: pointer;
+  
+  a {
+    color: $primary-color;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// 按鈕樣式
+.registerBtn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+  color: $white;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: $spacing-lg;
+  box-shadow: 0 4px 15px rgba(82, 196, 26, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(82, 196, 26, 0.4);
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+  }
+}
+
+.loadingSpinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// 頁尾連結
+.footer {
+  text-align: center;
+  padding-top: $spacing-lg;
+  border-top: 1px solid $border-color;
+}
+
+.footerText {
+  font-size: 14px;
+  color: $text-secondary;
+  margin-bottom: $spacing-sm;
+}
+
+.footerLink {
+  font-size: 14px;
+  color: $primary-color;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 500;
+  
+  &:hover {
+    color: darken($primary-color, 10%);
+    text-decoration: underline;
+  }
+}
+
+// 動畫
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 響應式設計
+@media screen and (max-width: 480px) {
+  .registerPage {
+    padding: $spacing-md;
+  }
+  
+  .container {
+    padding: $spacing-xl $spacing-lg;
+  }
+  
+  .appName {
+    font-size: 22px;
+  }
+  
+  .sectionTitle {
+    font-size: 16px;
+  }
+  
+  .userTypeButtons {
+    gap: $spacing-sm;
+  }
+  
+  .userTypeBtn {
+    padding: $spacing-md;
+    gap: $spacing-md;
+  }
+  
+  .userTypeIcon {
+    width: 40px;
+    height: 40px;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  
+  .userTypeLabel {
+    font-size: 15px;
+  }
+  
+  .userTypeDesc {
+    font-size: 12px;
+  }
+  
+  .formInput {
+    padding: 12px 14px;
+    font-size: 16px; // 防止 iOS 縮放
+  }
+}

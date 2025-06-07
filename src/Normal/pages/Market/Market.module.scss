@@ -138,24 +138,31 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: hidden;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+.iconFallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   
   svg {
     width: 40px;
     height: 40px;
     color: $primary-color;
   }
-}
-
-.productTag {
-  position: absolute;
-  top: $spacing-sm;
-  left: $spacing-sm;
-  background: $success-color;
-  color: $white;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 2px $spacing-sm;
-  border-radius: $radius-sm;
+  
+  &.hidden {
+    display: none;
+  }
 }
 
 .productInfo {
@@ -168,6 +175,16 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
   color: $text-primary;
   margin-bottom: $spacing-xs;
   line-height: 1.3;
+}
+
+.productCategory {
+  font-size: 11px;
+  color: $text-secondary;
+  background: $background-light;
+  padding: 2px $spacing-xs;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: $spacing-sm;
 }
 
 .productDesc {
@@ -289,16 +306,47 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
   align-items: center;
   justify-content: center;
   margin-bottom: $spacing-lg;
+  overflow: hidden;
+  position: relative;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: $radius-md;
+  }
+}
+
+.modalIconFallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
   
   svg {
     width: 60px;
     height: 60px;
     color: $primary-color;
   }
+  
+  &.hidden {
+    display: none;
+  }
 }
 
 .modalProductInfo {
   margin-bottom: $spacing-xl;
+}
+
+.modalProductCategory {
+  font-size: 13px;
+  color: $text-secondary;
+  margin-bottom: $spacing-sm;
+  background: $background-light;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+  display: inline-block;
 }
 
 .modalProductName {
@@ -406,7 +454,7 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
   color: $primary-color;
 }
 
-.addToCartBtn {
+.purchaseBtn {
   flex: 1;
   padding: $spacing-md $spacing-lg;
   background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
@@ -427,7 +475,7 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
     height: 18px;
   }
   
-  &:hover {
+  &:hover:not(:disabled) {
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
   }
@@ -435,6 +483,8 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
   &:disabled {
     opacity: 0.7;
     cursor: not-allowed;
+    background: #ccc;
+    transform: none;
   }
 }
 

@@ -21,19 +21,23 @@ import Profile from "./Normal/pages/Profile/Profile";
 import DisHome from "./Disadvantaged/pages/Home/Home";
 import DisHeader from "./Disadvantaged/components/Header/Header";
 import DisRecive from "./Disadvantaged/pages/Recive/Recive";
+import DisRecord from "./Disadvantaged/pages/Record/Record";
+import DisNotification from "./Disadvantaged/pages/Notification/Notification";
 
 import { UserState, UserStateEnum } from "./utils/type";
 import { apiCheckUserState } from "./API/auth";
 import Loading1 from "./components/Loading1/Loading1";
+import Register from "./pages/Register/Register";
 
 
 const App: React.FC = () => {
+  const getterState = useSelector((state: RootState) => state.getter);
   const modalState = useSelector((state: RootState) => state.modal);
   const loadingState = useSelector((state: RootState) => state.loading);
   const dispatch = useDispatch();
 
   const [userState, setUserState] = useState<UserState>(
-    UserStateEnum.DISADVANTAGED
+    UserStateEnum.NONE
   );
 
   const handleCheckUserState = async () => {
@@ -49,18 +53,19 @@ const App: React.FC = () => {
   };
 
   useEffect(() => {
-    // handleCheckUserState();
+    handleCheckUserState();
     console.log("====================================");
     console.log("User State:", userState);
     console.log("====================================");
-  }, []);
+  }, [getterState.userState]);
 
   if (userState === UserStateEnum.NONE) {
     return (
       <BrowserRouter>
         <Routes>
-          <Route path="/login" element={<Login />} />
+          <Route path="/*" element={<Login />} />
           <Route path="/forgot-password" element={<ForgotPassword />} />
+          <Route path="register" element={<Register />} />
         </Routes>
       </BrowserRouter>
     );
@@ -86,11 +91,13 @@ const App: React.FC = () => {
     return (
       <BrowserRouter>
         {loadingState.isLoading1 && <Loading1 />}
-        <DisHeader />
+        <DisHeader />\
         <Routes>
           <Route path="*" element={<DisHome />} />
           <Route path="/home" element={<DisHome />} />
           <Route path="/receive" element={<DisRecive />} />
+          <Route path="/records" element={<DisRecord />} />
+          <Route path="/notifications" element={<DisNotification />} />
         </Routes>
         {/* <Footer /> */}
       </BrowserRouter>

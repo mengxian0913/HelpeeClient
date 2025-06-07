@@ -1,0 +1,391 @@
+.registerPage {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #E3F2FD 0%, #FFF3E0 100%);
+  padding: 20px;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft JhengHei", sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 20px;
+  padding: 40px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+
+.logoSection {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.logo {
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, #4A90E2 0%, #7CB4FF 100%);
+  border-radius: 50%;
+  margin: 0 auto 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 5px 15px rgba(74, 144, 226, 0.3);
+}
+.logo svg {
+  width: 35px;
+  height: 35px;
+  color: #ffffff;
+  stroke-width: 2;
+}
+
+.appName {
+  font-size: 26px;
+  font-weight: 700;
+  color: #2C3E50;
+  margin-bottom: 8px;
+}
+
+.appSubtitle {
+  font-size: 14px;
+  color: #7F8C8D;
+  margin-bottom: 30px;
+}
+
+.userTypeSection {
+  margin-bottom: 30px;
+}
+
+.sectionTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: #34495E;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.sectionDesc {
+  font-size: 14px;
+  color: #7F8C8D;
+  text-align: center;
+  margin-bottom: 20px;
+  line-height: 1.5;
+}
+
+.userTypeButtons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.userTypeBtn {
+  padding: 20px;
+  border: 2px solid #E0E0E0;
+  border-radius: 15px;
+  background: #ffffff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  text-align: left;
+}
+.userTypeBtn:hover {
+  border-color: #4A90E2;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.userTypeBtn.active {
+  border-color: #4A90E2;
+  background: linear-gradient(135deg, rgba(74, 144, 226, 0.05) 0%, rgba(124, 180, 255, 0.05) 100%);
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+
+.userTypeIcon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #4A90E2 0%, #7CB4FF 100%);
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.userTypeIcon svg {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+  stroke-width: 2;
+}
+
+.userTypeContent {
+  flex: 1;
+}
+
+.userTypeLabel {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C3E50;
+  margin-bottom: 4px;
+}
+
+.userTypeDesc {
+  font-size: 13px;
+  color: #7F8C8D;
+  line-height: 1.4;
+}
+
+.formSection {
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.5s ease;
+}
+.formSection.active {
+  opacity: 1;
+  max-height: 1000px;
+  animation: slideIn 0.3s ease-out;
+}
+
+.formGroup {
+  margin-bottom: 20px;
+}
+
+.formLabel {
+  display: block;
+  font-size: 14px;
+  color: #34495E;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.formInput {
+  width: 100%;
+  padding: 14px 16px;
+  border: 2px solid #E0E0E0;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  background: #ffffff;
+}
+.formInput:focus {
+  outline: none;
+  border-color: #4A90E2;
+  box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+}
+.formInput.error {
+  border-color: #FF4D4F;
+}
+.formInput.error:focus {
+  box-shadow: 0 0 0 3px rgba(255, 77, 79, 0.1);
+}
+.formInput::-moz-placeholder {
+  color: #a7b0b1;
+}
+.formInput::placeholder {
+  color: #a7b0b1;
+}
+
+.passwordWrapper {
+  position: relative;
+}
+
+.passwordToggle {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: #7F8C8D;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.passwordToggle svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2;
+}
+.passwordToggle:hover {
+  color: #2C3E50;
+}
+
+.errorText {
+  display: block;
+  font-size: 12px;
+  color: #FF4D4F;
+  margin-top: 4px;
+  font-weight: 500;
+}
+
+.inputHint {
+  font-size: 12px;
+  color: #7F8C8D;
+  margin-top: 4px;
+}
+
+.termsSection {
+  margin: 30px 0;
+  padding: 20px;
+  background: rgba(74, 144, 226, 0.03);
+  border-radius: 10px;
+  border: 1px solid rgba(74, 144, 226, 0.1);
+}
+
+.checkboxGroup {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+.checkboxGroup:last-child {
+  margin-bottom: 0;
+}
+
+.checkbox {
+  margin-top: 2px;
+  width: 18px;
+  height: 18px;
+  accent-color: #4A90E2;
+  cursor: pointer;
+}
+
+.checkboxLabel {
+  font-size: 13px;
+  color: #34495E;
+  line-height: 1.5;
+  cursor: pointer;
+}
+.checkboxLabel a {
+  color: #4A90E2;
+  text-decoration: none;
+}
+.checkboxLabel a:hover {
+  text-decoration: underline;
+}
+
+.registerBtn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #52C41A 0%, #73D13D 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-bottom: 20px;
+  box-shadow: 0 4px 15px rgba(82, 196, 26, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+.registerBtn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(82, 196, 26, 0.4);
+}
+.registerBtn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+.registerBtn svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+.loadingSpinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+.footer {
+  text-align: center;
+  padding-top: 20px;
+  border-top: 1px solid #E0E0E0;
+}
+
+.footerText {
+  font-size: 14px;
+  color: #7F8C8D;
+  margin-bottom: 8px;
+}
+
+.footerLink {
+  font-size: 14px;
+  color: #4A90E2;
+  text-decoration: none;
+  transition: color 0.3s ease;
+  font-weight: 500;
+}
+.footerLink:hover {
+  color: #2275d7;
+  text-decoration: underline;
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media screen and (max-width: 480px) {
+  .registerPage {
+    padding: 15px;
+  }
+  .container {
+    padding: 30px 20px;
+  }
+  .appName {
+    font-size: 22px;
+  }
+  .sectionTitle {
+    font-size: 16px;
+  }
+  .userTypeButtons {
+    gap: 8px;
+  }
+  .userTypeBtn {
+    padding: 15px;
+    gap: 15px;
+  }
+  .userTypeIcon {
+    width: 40px;
+    height: 40px;
+  }
+  .userTypeIcon svg {
+    width: 20px;
+    height: 20px;
+  }
+  .userTypeLabel {
+    font-size: 15px;
+  }
+  .userTypeDesc {
+    font-size: 12px;
+  }
+  .formInput {
+    padding: 12px 14px;
+    font-size: 16px;
+  }
+}/*# sourceMappingURL=Register.module.css.map */

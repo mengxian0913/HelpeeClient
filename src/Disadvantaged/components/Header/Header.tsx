@@ -64,7 +64,7 @@ const Header: React.FC<HeaderProps> = ({
               {balance.toLocaleString()}
             </button>
 
-            <button className={styles.notificationBtn} onClick={onNotificationClick}>
+            <button className={styles.notificationBtn} onClick={() => navigation('/notifications')}>
               <Bell />
               {notificationCount > 0 && (
                 <span className={styles.notificationBadge}>{notificationCount}</span>

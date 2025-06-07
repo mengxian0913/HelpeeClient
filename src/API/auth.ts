@@ -1,5 +1,7 @@
 import { UserState, UserStateEnum } from "@/utils/type";
 import axios from "axios";
+import { API_BASE_URL } from "./config";
+
 
 
 export const apiCheckUserState = async (): Promise<UserState> => {
@@ -11,13 +13,13 @@ export const apiCheckUserState = async (): Promise<UserState> => {
       return UserStateEnum.NONE;
     }
 
-    const { data } = await axios.get<UserState>("/auth/user", {
+    const { data } = await axios.get<any>(`${API_BASE_URL}/parse_jwt/`, {
       headers: {
         Authorization: `Bearer ${token}`,
       }
     });
 
-    return data;
+    return data["user_type"];
 
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -36,5 +38,76 @@ export const apiCheckUserState = async (): Promise<UserState> => {
     }
     
     return UserStateEnum.NONE;
+  }
+};
+
+
+export const apiRegister = async (account: string, password: string, email: string, username: string, userType: string): Promise<void> => {
+  try {
+    const params = new URLSearchParams();
+    params.append("account", account);
+    params.append("password", password);
+    params.append("username", username);
+    params.append("user_type", userType);
+    params.append("email", email);
+
+    const response = await axios.post(
+      `${API_BASE_URL}/adduser/`,
+      params,
+      {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      }
+    );
+
+    if (response.status === 201) {
+      console.log("Registration successful");
+    } else {
+      console.error("Registration failed:", response.data);
+    }
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("API request failed:", error.response?.data || error.message);
+    } else {
+      console.error("Unexpected error during registration:", error);
+    }
+  }
+}
+
+
+// normaluser1  TestPass123
+// disadv
+export const apiLogin = async (account: string, password: string): Promise<string> => {
+  try {
+    const params = new URLSearchParams();
+    params.append("account", account);
+    params.append("password", password);
+
+    const response = await axios.post(
+      `${API_BASE_URL}/login/`,
+      params,
+      {
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      }
+    );
+
+    if (response.status === 200) {
+      const token = response.data.access;
+      localStorage.setItem("token", token);
+      return token;
+    } else {
+      console.error("Login failed:", response.data);
+      throw new Error("Login failed");
+    }
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("API request failed:", error.response?.data || error.message);
+    } else {
+      console.error("Unexpected error during login:", error);
+    }
+    throw error;
   }
 };

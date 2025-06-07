@@ -9,10 +9,14 @@ import {
   Loader2,
 } from "lucide-react";
 import styles from "./Login.module.scss";
+import { apiLogin } from "@/API/auth";
+import { useDispatch } from "react-redux";
+import { setUserStateGetter } from "@/state/getter/getter";
 
 type UserType = "normal" | "disadvantaged" | null;
 
 const Login: React.FC = () => {
+  const dispatch = useDispatch();
   const [selectedUserType, setSelectedUserType] = useState<UserType>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -45,18 +49,11 @@ const Login: React.FC = () => {
       return;
     }
 
-    setIsLoading(true);
-
     try {
       // 模擬 API 呼叫
-      await new Promise((resolve) => setTimeout(resolve, 2000));
-
-      // 這裡處理登入邏輯
-      console.log("Login as:", selectedUserType);
-      console.log("Form data:", formData);
-      alert(
-        `歡迎您，${selectedUserType === "normal" ? "愛心天使" : "希望種子"}！`
-      );
+      setIsLoading(true);
+      await apiLogin(formData.account, formData.password);
+      dispatch(setUserStateGetter(false)); // toggle
     } catch (error) {
       console.error("Login error:", error);
       alert("登入失敗，請重試");
@@ -170,10 +167,10 @@ const Login: React.FC = () => {
           </form>
 
           <div className={styles.helperLinks}>
-            <a href="#" className={styles.helperLink}>
+            <a href="/forgot-password" className={styles.helperLink}>
               忘記密碼？
             </a>
-            <a href="#" className={styles.helperLink}>
+            <a href="/register" className={styles.helperLink}>
               註冊新帳號
             </a>
           </div>

@@ -301,6 +301,14 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
   border-radius: $radius-md;
   overflow: hidden;
   background: $white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-sm;
+    border-color: $primary-color;
+  }
   
   .productImage {
     width: 100%;
@@ -309,11 +317,31 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    position: relative;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+  
+  .iconFallback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
     
     svg {
       width: 32px;
       height: 32px;
       color: $primary-color;
+    }
+    
+    &.hidden {
+      display: none;
     }
   }
   
@@ -331,7 +359,279 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
       font-size: 14px;
       color: $primary-color;
       font-weight: 600;
+      display: flex;
+      align-items: center;
     }
+  }
+}
+
+// Modal 樣式
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0 $spacing-lg $spacing-lg;
+  backdrop-filter: blur(5px);
+}
+
+.modal {
+  background: $white;
+  border-radius: $radius-lg $radius-lg 0 0;
+  width: 100%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: $shadow-md;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  
+  &.open {
+    transform: translateY(0);
+  }
+}
+
+.modalHeader {
+  padding: $spacing-xl;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: $background-light;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: $text-secondary;
+  transition: all 0.3s ease;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+  }
+  
+  &:hover {
+    background: $border-color;
+    color: $text-primary;
+  }
+}
+
+.modalContent {
+  padding: $spacing-xl;
+}
+
+.modalProductImage {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #E3F2FD 0%, #FFF3E0 100%);
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $spacing-lg;
+  overflow: hidden;
+  position: relative;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: $radius-md;
+  }
+}
+
+.modalIconFallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  
+  svg {
+    width: 60px;
+    height: 60px;
+    color: $primary-color;
+  }
+  
+  &.hidden {
+    display: none;
+  }
+}
+
+.modalProductInfo {
+  margin-bottom: $spacing-xl;
+}
+
+.modalProductName {
+  font-size: 20px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.modalProductDesc {
+  font-size: 14px;
+  color: $text-secondary;
+  line-height: 1.5;
+  margin-bottom: $spacing-lg;
+}
+
+.modalProductPrice {
+  font-size: 24px;
+  font-weight: 700;
+  color: $primary-color;
+  margin-bottom: $spacing-lg;
+  display: flex;
+  align-items: center;
+}
+
+.productCategory {
+  font-size: 13px;
+  color: $text-secondary;
+  margin-bottom: $spacing-sm;
+  background: $background-light;
+  padding: $spacing-xs $spacing-sm;
+  border-radius: $radius-sm;
+  display: inline-block;
+}
+
+// 數量選擇器
+.quantitySelector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-xl;
+}
+
+.quantityLabel {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+}
+
+.quantityBtn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid $border-color;
+  background: $white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+  }
+  
+  &:hover {
+    border-color: $primary-color;
+    color: $primary-color;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.quantityValue {
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-primary;
+  min-width: 40px;
+  text-align: center;
+}
+
+// Modal 底部操作
+.modalActions {
+  padding: $spacing-xl;
+  border-top: 1px solid $border-color;
+  display: flex;
+  gap: $spacing-md;
+}
+
+.totalPrice {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.totalLabel {
+  font-size: 12px;
+  color: $text-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.totalAmount {
+  font-size: 20px;
+  font-weight: 700;
+  color: $primary-color;
+  display: flex;
+  align-items: center;
+}
+
+.purchaseBtn {
+  flex: 1;
+  padding: $spacing-md $spacing-lg;
+  background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+  color: $white;
+  border: none;
+  border-radius: $radius-md;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    background: #ccc;
+    transform: none;
   }
 }
 
@@ -351,5 +651,31 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
   
   .actionCard {
     padding: $spacing-md;
+  }
+  
+  .modalOverlay {
+    padding: 0;
+  }
+  
+  .modal {
+    border-radius: $radius-lg $radius-lg 0 0;
+  }
+  
+  .modalHeader {
+    padding: $spacing-lg;
+  }
+  
+  .modalContent {
+    padding: $spacing-lg;
+  }
+  
+  .modalActions {
+    padding: $spacing-md $spacing-lg;
+    flex-direction: column;
+    
+    .totalPrice {
+      text-align: center;
+      margin-bottom: $spacing-md;
+    }
   }
 }

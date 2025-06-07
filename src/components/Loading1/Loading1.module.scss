@@ -2,10 +2,12 @@
 $primary-color: #4A90E2;
 $primary-light: #7CB4FF;
 $success-color: #52C41A;
-$warning-color: #FFB800;
 $text-primary: #2C3E50;
 $text-secondary: #7F8C8D;
 $white: #ffffff;
+$background-gradient-start: #E3F2FD;
+$background-gradient-end: #FFF3E0;
+$border-color: #E0E0E0;
 
 // 間距變數
 $spacing-xs: 4px;
@@ -13,280 +15,191 @@ $spacing-sm: 8px;
 $spacing-md: 12px;
 $spacing-lg: 16px;
 $spacing-xl: 20px;
+$spacing-2xl: 30px;
 
 // 圓角變數
 $radius-sm: 8px;
 $radius-md: 12px;
 $radius-lg: 16px;
+$radius-full: 50%;
 
 // 陰影變數
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
 $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
 
-// Loading 遮罩層
-.loadingOverlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(4px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-  animation: fadeIn 0.3s ease-out;
-}
-
-// Loading 容器
 .loadingContainer {
-  background: $white;
-  border-radius: $radius-lg;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, $background-gradient-start 0%, $background-gradient-end 100%);
   padding: $spacing-xl;
-  box-shadow: $shadow-md;
   text-align: center;
-  min-width: 200px;
-  max-width: 300px;
-  animation: slideUp 0.4s ease-out;
 }
 
-// 愛心 Loading 動畫
-.heartLoader {
-  margin-bottom: $spacing-lg;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 60px;
-}
-
-.heartContainer {
-  position: relative;
-  width: 60px;
-  height: 60px;
+.logo {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: $radius-full;
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.heartIcon {
-  width: 36px;
-  height: 36px;
-  color: $primary-color;
-  stroke-width: 2;
-  animation: heartBeat 1.5s ease-in-out infinite;
-  filter: drop-shadow(0 2px 8px rgba(74, 144, 226, 0.3));
-}
-
-.heartIcon.filled {
-  fill: currentColor;
-}
-
-// 愛心圓環動畫
-.heartRing {
-  position: absolute;
-  width: 50px;
-  height: 50px;
-  border: 3px solid transparent;
-  border-top: 3px solid $primary-color;
-  border-radius: 50%;
-  animation: spin 2s linear infinite;
-  opacity: 0.6;
-}
-
-.heartRing.secondary {
-  width: 40px;
-  height: 40px;
-  border-color: transparent;
-  border-top: 2px solid $primary-light;
-  animation: spin 1.5s linear infinite reverse;
-}
-
-// 點點 Loading 動畫
-.dotsLoader {
-  display: flex;
-  justify-content: center;
-  gap: $spacing-sm;
   margin-bottom: $spacing-lg;
-}
-
-.dot {
-  width: 8px;
-  height: 8px;
-  background: $primary-color;
-  border-radius: 50%;
-  animation: dotPulse 1.4s ease-in-out infinite both;
+  box-shadow: 0 4px 15px rgba(74, 144, 226, 0.3);
   
-  &:nth-child(1) {
-    animation-delay: -0.32s;
-  }
-  
-  &:nth-child(2) {
-    animation-delay: -0.16s;
-  }
-  
-  &:nth-child(3) {
-    animation-delay: 0s;
+  svg {
+    width: 40px;
+    height: 40px;
+    color: $white;
+    stroke-width: 2;
   }
 }
 
-// 波浪 Loading 動畫
-.waveLoader {
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: $spacing-xs;
-  height: 40px;
-  margin-bottom: $spacing-lg;
-}
-
-.wave {
-  width: 4px;
-  height: 20px;
-  background: linear-gradient(to top, $primary-color, $primary-light);
-  border-radius: 2px;
-  animation: waveAnimation 1.2s ease-in-out infinite;
-  
-  &:nth-child(1) { animation-delay: 0s; }
-  &:nth-child(2) { animation-delay: 0.1s; }
-  &:nth-child(3) { animation-delay: 0.2s; }
-  &:nth-child(4) { animation-delay: 0.3s; }
-  &:nth-child(5) { animation-delay: 0.4s; }
-}
-
-// 圓形進度條
-.circularProgress {
-  position: relative;
-  width: 60px;
-  height: 60px;
-  margin: 0 auto $spacing-lg;
-}
-
-.progressCircle {
-  width: 100%;
-  height: 100%;
-  transform: rotate(-90deg);
-}
-
-.progressTrack {
-  fill: none;
-  stroke: rgba(74, 144, 226, 0.1);
-  stroke-width: 4;
-}
-
-.progressBar {
-  fill: none;
-  stroke: $primary-color;
-  stroke-width: 4;
-  stroke-linecap: round;
-  stroke-dasharray: 157; // 2π × 25 (半徑)
-  stroke-dashoffset: 157;
-  animation: progressSpin 2s ease-in-out infinite;
-}
-
-.progressIcon {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 24px;
-  height: 24px;
-  color: $primary-color;
-  stroke-width: 2;
-}
-
-// Loading 文字
-.loadingText {
-  font-size: 16px;
-  font-weight: 600;
+.appName {
+  font-size: 28px;
+  font-weight: 700;
   color: $text-primary;
   margin-bottom: $spacing-sm;
 }
 
-.loadingDesc {
-  font-size: 14px;
+.appSubtitle {
+  font-size: 16px;
   color: $text-secondary;
-  line-height: 1.4;
+  margin-bottom: $spacing-2xl;
 }
 
-// 不同類型的 Loading 樣式
-.loadingContainer.small {
-  padding: $spacing-lg;
-  min-width: 150px;
+// 水平步驟容器
+.stepsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $spacing-2xl;
+  gap: 0;
+}
+
+.stepWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.stepItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-md;
+  position: relative;
+  z-index: 2;
+}
+
+.stepIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: $radius-full;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: $white;
+  border: 3px solid $border-color;
+  color: $text-secondary;
+  transition: all 0.3s ease;
+  box-shadow: $shadow-sm;
   
-  .heartIcon {
-    width: 28px;
-    height: 28px;
+  svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2.5;
   }
   
-  .loadingText {
-    font-size: 14px;
-  }
-  
-  .loadingDesc {
-    font-size: 12px;
+  .stepNumber {
+    font-size: 16px;
+    font-weight: 700;
   }
 }
 
-.loadingContainer.large {
-  padding: $spacing-xl * 1.5;
-  min-width: 250px;
+.stepLabel {
+  font-size: 13px;
+  font-weight: 500;
+  color: $text-secondary;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+  min-width: 60px;
+}
+
+// 步驟連接線
+.stepConnector {
+  width: 60px;
+  height: 3px;
+  background: $border-color;
+  margin: 0 (-$spacing-xs);
+  position: relative;
+  z-index: 1;
+  transition: all 0.3s ease;
   
-  .heartIcon {
-    width: 48px;
-    height: 48px;
-  }
-  
-  .loadingText {
-    font-size: 18px;
+  &.completed {
+    background: $success-color;
   }
 }
 
-// 不同主題色彩
-.loadingContainer.success {
-  .heartIcon,
-  .heartRing,
-  .dot,
-  .wave,
-  .progressBar {
-    color: $success-color;
+// 激活狀態
+.stepItem.active {
+  .stepIcon {
+    border-color: $primary-color;
+    background: $primary-color;
+    color: $white;
+    box-shadow: 0 4px 15px rgba(74, 144, 226, 0.4);
+  }
+  
+  .stepLabel {
+    color: $primary-color;
+    font-weight: 600;
+  }
+}
+
+// 完成狀態
+.stepItem.completed {
+  .stepIcon {
     border-color: $success-color;
     background: $success-color;
-    stroke: $success-color;
+    color: $white;
+    box-shadow: 0 4px 15px rgba(82, 196, 26, 0.4);
   }
   
-  .wave {
-    background: linear-gradient(to top, $success-color, #73D13D);
+  .stepLabel {
+    color: $success-color;
+    font-weight: 600;
   }
 }
 
-.loadingContainer.warning {
-  .heartIcon,
-  .heartRing,
-  .dot,
-  .wave,
-  .progressBar {
-    color: $warning-color;
-    border-color: $warning-color;
-    background: $warning-color;
-    stroke: $warning-color;
-  }
-  
-  .wave {
-    background: linear-gradient(to top, $warning-color, #FFD93D);
-  }
+// 載入文字
+.loadingText {
+  font-size: 18px;
+  font-weight: 600;
+  color: $primary-color;
+  margin-bottom: $spacing-xl;
 }
 
-// 動畫定義
-@keyframes fadeIn {
+// 旋轉動畫
+.spinner {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
   from {
-    opacity: 0;
+    transform: rotate(0deg);
   }
   to {
-    opacity: 1;
+    transform: rotate(360deg);
   }
 }
 
-@keyframes slideUp {
+// 淡入動畫
+.stepItem {
+  animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
   from {
     opacity: 0;
     transform: translateY(20px);
@@ -297,68 +210,59 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
 }
 
-@keyframes heartBeat {
-  0%, 100% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.2);
-  }
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes dotPulse {
-  0%, 80%, 100% {
-    transform: scale(0.5);
-    opacity: 0.5;
-  }
-  40% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-@keyframes waveAnimation {
-  0%, 40%, 100% {
-    transform: scaleY(1);
-  }
-  20% {
-    transform: scaleY(1.5);
-  }
-}
-
-@keyframes progressSpin {
-  0% {
-    stroke-dashoffset: 157;
-  }
-  50% {
-    stroke-dashoffset: 39.25; // 157 / 4
-  }
-  100% {
-    stroke-dashoffset: 157;
-  }
-}
-
 // 響應式設計
 @media screen and (max-width: 480px) {
   .loadingContainer {
-    margin: 0 $spacing-lg;
-    min-width: 180px;
+    padding: $spacing-lg;
+  }
+  
+  .appName {
+    font-size: 24px;
+  }
+  
+  .appSubtitle {
+    font-size: 14px;
+  }
+  
+  .stepsContainer {
+    margin-bottom: $spacing-xl;
+  }
+  
+  .stepIcon {
+    width: 40px;
+    height: 40px;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+    
+    .stepNumber {
+      font-size: 14px;
+    }
+  }
+  
+  .stepLabel {
+    font-size: 12px;
+    min-width: 50px;
+  }
+  
+  .stepConnector {
+    width: 40px;
   }
   
   .loadingText {
-    font-size: 15px;
+    font-size: 16px;
+  }
+}
+
+@media screen and (max-width: 320px) {
+  .stepConnector {
+    width: 30px;
   }
   
-  .loadingDesc {
-    font-size: 13px;
+  .stepLabel {
+    font-size: 11px;
+    min-width: 40px;
   }
 }

@@ -104,23 +104,29 @@
   align-items: center;
   justify-content: center;
   position: relative;
+  overflow: hidden;
 }
-.productImage svg {
+.productImage img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.iconFallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.iconFallback svg {
   width: 40px;
   height: 40px;
   color: #4A90E2;
 }
-
-.productTag {
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  background: #52C41A;
-  color: #ffffff;
-  font-size: 10px;
-  font-weight: 600;
-  padding: 2px 8px;
-  border-radius: 8px;
+.iconFallback.hidden {
+  display: none;
 }
 
 .productInfo {
@@ -133,6 +139,16 @@
   color: #2C3E50;
   margin-bottom: 4px;
   line-height: 1.3;
+}
+
+.productCategory {
+  font-size: 11px;
+  color: #7F8C8D;
+  background: #F8FAFC;
+  padding: 2px 4px;
+  border-radius: 4px;
+  display: inline-block;
+  margin-bottom: 8px;
 }
 
 .productDesc {
@@ -249,15 +265,45 @@
   align-items: center;
   justify-content: center;
   margin-bottom: 16px;
+  overflow: hidden;
+  position: relative;
 }
-.modalProductImage svg {
+.modalProductImage img {
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 12px;
+}
+
+.modalIconFallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+.modalIconFallback svg {
   width: 60px;
   height: 60px;
   color: #4A90E2;
 }
+.modalIconFallback.hidden {
+  display: none;
+}
 
 .modalProductInfo {
   margin-bottom: 20px;
+}
+
+.modalProductCategory {
+  font-size: 13px;
+  color: #7F8C8D;
+  margin-bottom: 8px;
+  background: #F8FAFC;
+  padding: 4px 8px;
+  border-radius: 8px;
+  display: inline-block;
 }
 
 .modalProductName {
@@ -360,7 +406,7 @@
   color: #4A90E2;
 }
 
-.addToCartBtn {
+.purchaseBtn {
   flex: 1;
   padding: 12px 16px;
   background: linear-gradient(135deg, #52C41A 0%, #73D13D 100%);
@@ -376,17 +422,19 @@
   justify-content: center;
   gap: 8px;
 }
-.addToCartBtn svg {
+.purchaseBtn svg {
   width: 18px;
   height: 18px;
 }
-.addToCartBtn:hover {
+.purchaseBtn:hover:not(:disabled) {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
 }
-.addToCartBtn:disabled {
+.purchaseBtn:disabled {
   opacity: 0.7;
   cursor: not-allowed;
+  background: #ccc;
+  transform: none;
 }
 
 @media screen and (max-width: 480px) {
