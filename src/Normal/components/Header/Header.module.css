@@ -1,0 +1,180 @@
+.header {
+  background: #ffffff;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid #E0E0E0;
+}
+
+.statusBar {
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #4A90E2 0%, #7CB4FF 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo svg {
+  width: 16px;
+  height: 16px;
+  color: #ffffff;
+  stroke-width: 2.5;
+}
+
+.logoText {
+  font-size: 16px;
+  font-weight: 700;
+  color: #2C3E50;
+}
+
+.statusActions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.donateBtn {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  background: linear-gradient(135deg, #52C41A 0%, #73D13D 100%);
+  color: #ffffff;
+  border: none;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.donateBtn svg {
+  width: 14px;
+  height: 14px;
+  stroke-width: 2.5;
+}
+.donateBtn:hover {
+  transform: scale(1.05);
+}
+
+.cartBtn {
+  position: relative;
+  padding: 8px;
+  background: none;
+  border: none;
+  color: #7F8C8D;
+  cursor: pointer;
+  border-radius: 8px;
+}
+.cartBtn svg {
+  width: 20px;
+  height: 20px;
+  stroke-width: 2;
+}
+
+.cartBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #FF4757;
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 8px;
+  min-width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userAvatar {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, #4A90E2 0%, #7CB4FF 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.userAvatar svg {
+  width: 14px;
+  height: 14px;
+  color: #ffffff;
+  stroke-width: 2.5;
+}
+
+.bottomNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #ffffff;
+  border-top: 1px solid #E0E0E0;
+  z-index: 100;
+  padding: 8px 0;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 8px;
+  color: #7F8C8D;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  min-width: 60px;
+}
+.navItem svg {
+  width: 22px;
+  height: 22px;
+  stroke-width: 2;
+}
+.navItem span {
+  font-size: 10px;
+  font-weight: 500;
+}
+.navItem.active {
+  color: #4A90E2;
+}
+.navItem.active svg {
+  stroke-width: 2.5;
+}
+.navItem.active span {
+  font-weight: 600;
+}
+.navItem:hover:not(.active) {
+  color: #9aa4a5;
+}
+
+.pageContent {
+  padding-bottom: 80px;
+}/*# sourceMappingURL=Header.module.css.map */

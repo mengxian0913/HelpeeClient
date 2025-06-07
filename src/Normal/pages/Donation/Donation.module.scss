@@ -1,0 +1,429 @@
+// 色彩變數
+$primary-color: #4A90E2;
+$primary-light: #7CB4FF;
+$success-color: #52C41A;
+$warning-color: #FFB800;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$white: #ffffff;
+$background-light: #F8FAFC;
+$border-color: #E0E0E0;
+
+// 間距變數
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+
+// 圓角變數
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// 陰影變數
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+.donationPage {
+  min-height: 100vh;
+  background: $background-light;
+  padding-bottom: 80px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+// 餘額卡片
+.balanceCard {
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  margin-top: 20px;
+  margin-bottom: $spacing-xl;
+  color: $white;
+  text-align: center;
+  box-shadow: $shadow-md;
+}
+
+.balanceIcon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-lg;
+  
+  svg {
+    width: 32px;
+    height: 32px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.balanceTitle {
+  font-size: 16px;
+  opacity: 0.9;
+  margin-bottom: $spacing-sm;
+  font-weight: 500;
+}
+
+.balanceAmount {
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: $spacing-sm;
+}
+
+.balanceDesc {
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+// 購買區域
+.purchaseSection {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-xl;
+  box-shadow: $shadow-sm;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+  text-align: center;
+}
+
+.sectionDesc {
+  font-size: 14px;
+  color: $text-secondary;
+  text-align: center;
+  margin-bottom: $spacing-xl;
+  line-height: 1.5;
+}
+
+// 點數包網格
+.coinsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+  margin-bottom: $spacing-xl;
+}
+
+.coinPackage {
+  background: $white;
+  border: 2px solid $border-color;
+  border-radius: $radius-md;
+  padding: $spacing-lg;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  
+  &:hover {
+    border-color: $primary-color;
+    transform: translateY(-2px);
+    box-shadow: $shadow-sm;
+  }
+  
+  &.selected {
+    border-color: $primary-color;
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.05) 0%, rgba(124, 180, 255, 0.05) 100%);
+  }
+  
+  &.popular {
+    border-color: $warning-color;
+    
+    &::before {
+      content: '熱門';
+      position: absolute;
+      top: -8px;
+      right: $spacing-md;
+      background: $warning-color;
+      color: $white;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px $spacing-sm;
+      border-radius: 8px;
+    }
+  }
+  
+  &.bonus {
+    border-color: $success-color;
+    
+    &::before {
+      content: '超值';
+      position: absolute;
+      top: -8px;
+      right: $spacing-md;
+      background: $success-color;
+      color: $white;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px $spacing-sm;
+      border-radius: 8px;
+    }
+  }
+}
+
+.packageIcon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-md;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.packageCoins {
+  font-size: 24px;
+  font-weight: 700;
+  color: $primary-color;
+  margin-bottom: $spacing-xs;
+}
+
+.packagePrice {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.packageBonus {
+  font-size: 12px;
+  color: $success-color;
+  font-weight: 600;
+}
+
+.packageDesc {
+  font-size: 11px;
+  color: $text-secondary;
+  margin-top: $spacing-xs;
+}
+
+// 自訂金額
+.customAmount {
+  background: $background-light;
+  border-radius: $radius-md;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-xl;
+}
+
+.customTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+  text-align: center;
+}
+
+.amountInput {
+  width: 100%;
+  padding: $spacing-lg;
+  border: 2px solid $border-color;
+  border-radius: $radius-md;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 600;
+  background: $white;
+  
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  }
+}
+
+.conversionRate {
+  text-align: center;
+  font-size: 12px;
+  color: $text-secondary;
+  margin-top: $spacing-sm;
+}
+
+// 購買按鈕
+.purchaseBtn {
+  width: 100%;
+  padding: $spacing-lg $spacing-xl;
+  background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+  color: $white;
+  border: none;
+  border-radius: $radius-md;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  margin-bottom: $spacing-lg;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+// 付款方式
+.paymentMethods {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-xl;
+  box-shadow: $shadow-sm;
+}
+
+.methodGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+}
+
+.paymentMethod {
+  border: 2px solid $border-color;
+  border-radius: $radius-md;
+  padding: $spacing-lg;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    border-color: $primary-color;
+  }
+  
+  &.selected {
+    border-color: $primary-color;
+    background: rgba(74, 144, 226, 0.05);
+  }
+}
+
+.methodIcon {
+  width: 40px;
+  height: 40px;
+  background: $background-light;
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-sm;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: $primary-color;
+  }
+}
+
+.methodName {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+// 購買紀錄
+.historySection {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  box-shadow: $shadow-sm;
+}
+
+.historyItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $border-color;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.historyInfo {
+  flex: 1;
+}
+
+.historyDate {
+  font-size: 12px;
+  color: $text-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.historyDesc {
+  font-size: 14px;
+  color: $text-primary;
+  font-weight: 500;
+}
+
+.historyAmount {
+  font-size: 16px;
+  font-weight: 600;
+  color: $success-color;
+}
+
+.emptyHistory {
+  text-align: center;
+  padding: $spacing-xl 0;
+  color: $text-secondary;
+  
+  svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: $spacing-md;
+    opacity: 0.5;
+  }
+}
+
+// 響應式設計
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 $spacing-md;
+  }
+  
+  .coinsGrid {
+    grid-template-columns: 1fr;
+    gap: $spacing-sm;
+  }
+  
+  .methodGrid {
+    grid-template-columns: 1fr;
+  }
+  
+  .balanceAmount {
+    font-size: 28px;
+  }
+  
+  .packageCoins {
+    font-size: 20px;
+  }
+}

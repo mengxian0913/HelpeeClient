@@ -1,0 +1,293 @@
+.homePage {
+  width: 100%;
+  min-height: 100vh;
+  background: #F5F7FA;
+  padding-bottom: 80px;
+}
+
+.greetingSection {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: 30px 0 20px;
+  background: linear-gradient(135deg, #4A90E2 0%, #7CB4FF 100%);
+  color: #ffffff;
+  margin-bottom: 20px;
+}
+
+.greetingContent {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.greetingContent .greeting {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: 4px;
+}
+.greetingContent .userName {
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+.greetingContent .userBalance {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  opacity: 0.9;
+}
+.greetingContent .userBalance svg {
+  width: 16px;
+  height: 16px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.quickActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.actionCard {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.actionCard .actionIcon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, #52C41A 0%, #73D13D 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 15px;
+}
+.actionCard .actionIcon svg {
+  width: 24px;
+  height: 24px;
+  color: #ffffff;
+  stroke-width: 2;
+}
+.actionCard.secondary .actionIcon {
+  background: linear-gradient(135deg, #4A90E2 0%, #7CB4FF 100%);
+}
+.actionCard .actionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C3E50;
+  margin-bottom: 4px;
+}
+.actionCard .actionDesc {
+  font-size: 12px;
+  color: #7F8C8D;
+}
+
+.statsCard {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.statsTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C3E50;
+  margin-bottom: 20px;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.statItem {
+  text-align: center;
+}
+.statItem .statIcon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #4A90E2 0%, #7CB4FF 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 8px;
+}
+.statItem .statIcon svg {
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+  stroke-width: 2;
+}
+.statItem .statNumber {
+  font-size: 20px;
+  font-weight: 700;
+  color: #4A90E2;
+  margin-bottom: 4px;
+}
+.statItem .statLabel {
+  font-size: 12px;
+  color: #7F8C8D;
+}
+
+.newsSection {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.newsTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C3E50;
+  margin-bottom: 15px;
+}
+
+.newsItem {
+  display: flex;
+  gap: 15px;
+  padding: 15px 0;
+  border-bottom: 1px solid #F0F0F0;
+}
+.newsItem:last-child {
+  border-bottom: none;
+}
+.newsItem .newsIcon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.newsItem .newsIcon svg {
+  width: 18px;
+  height: 18px;
+  color: #ffffff;
+  stroke-width: 2;
+}
+.newsItem .newsContent {
+  flex: 1;
+}
+.newsItem .newsContent .newsText {
+  font-size: 14px;
+  color: #2C3E50;
+  margin-bottom: 4px;
+  line-height: 1.4;
+}
+.newsItem .newsContent .newsTime {
+  font-size: 12px;
+  color: #7F8C8D;
+}
+
+.recommendSection {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C3E50;
+}
+
+.viewMore {
+  font-size: 12px;
+  color: #4A90E2;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.viewMore svg {
+  width: 12px;
+  height: 12px;
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.productCard {
+  border: 1px solid #F0F0F0;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #ffffff;
+}
+.productCard .productImage {
+  width: 100%;
+  height: 80px;
+  background: linear-gradient(135deg, #E3F2FD 0%, #FFF3E0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.productCard .productImage svg {
+  width: 32px;
+  height: 32px;
+  color: #4A90E2;
+}
+.productCard .productInfo {
+  padding: 15px;
+}
+.productCard .productInfo .productName {
+  font-size: 12px;
+  color: #2C3E50;
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+.productCard .productInfo .productPrice {
+  font-size: 14px;
+  color: #4A90E2;
+  font-weight: 600;
+}
+
+@media screen and (max-width: 480px) {
+  .greetingContent {
+    padding: 0 15px;
+  }
+  .container {
+    padding: 0 15px;
+  }
+  .quickActions {
+    gap: 8px;
+  }
+  .actionCard {
+    padding: 15px;
+  }
+}/*# sourceMappingURL=Home.module.css.map */

@@ -1,0 +1,474 @@
+.recordPage {
+  min-height: 100vh;
+  background: #F8FAFC;
+  padding-bottom: 80px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+.summaryCard {
+  background: linear-gradient(135deg, #4A90E2 0%, #7CB4FF 100%);
+  border-radius: 16px;
+  padding: 20px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.summaryHeader {
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.summaryIcon {
+  width: 50px;
+  height: 50px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+}
+.summaryIcon svg {
+  width: 26px;
+  height: 26px;
+  color: #ffffff;
+  stroke-width: 2;
+}
+
+.summaryTitle {
+  font-size: 16px;
+  font-weight: 600;
+  opacity: 0.9;
+  margin-bottom: 8px;
+}
+
+.summaryStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.statItem {
+  text-align: center;
+}
+.statItem .statNumber {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.statItem .statLabel {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.filterSection {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.filterTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C3E50;
+}
+
+.filterToggle {
+  background: none;
+  border: none;
+  color: #4A90E2;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+}
+.filterToggle svg {
+  width: 18px;
+  height: 18px;
+  transition: transform 0.3s ease;
+}
+.filterToggle.expanded svg {
+  transform: rotate(180deg);
+}
+
+.filterContent {
+  display: none;
+}
+.filterContent.expanded {
+  display: block;
+  animation: slideDown 0.3s ease;
+}
+
+.filterTabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  overflow-x: auto;
+}
+.filterTabs::-webkit-scrollbar {
+  display: none;
+}
+
+.filterTab {
+  flex-shrink: 0;
+  padding: 8px 12px;
+  background: #F8FAFC;
+  color: #7F8C8D;
+  border: 1px solid #E0E0E0;
+  border-radius: 16px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.filterTab:hover, .filterTab.active {
+  background: #4A90E2;
+  color: #ffffff;
+  border-color: #4A90E2;
+}
+
+.dateRange {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+.dateInput {
+  padding: 8px 12px;
+  border: 1px solid #E0E0E0;
+  border-radius: 8px;
+  font-size: 14px;
+  background: #ffffff;
+}
+.dateInput:focus {
+  outline: none;
+  border-color: #4A90E2;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.1);
+}
+
+.chartSection {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.chartHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.chartTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C3E50;
+}
+
+.chartToggle {
+  display: flex;
+  background: #F8FAFC;
+  border-radius: 8px;
+  padding: 2px;
+}
+
+.chartToggleBtn {
+  padding: 4px 12px;
+  background: none;
+  border: none;
+  border-radius: 8px;
+  font-size: 12px;
+  color: #7F8C8D;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.chartToggleBtn.active {
+  background: #ffffff;
+  color: #4A90E2;
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.chartContainer {
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #F8FAFC;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.chartPlaceholder {
+  color: #7F8C8D;
+  font-size: 14px;
+}
+
+.quickStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.quickStatItem {
+  text-align: center;
+  padding: 12px;
+  background: #F8FAFC;
+  border-radius: 8px;
+}
+.quickStatItem .quickStatIcon {
+  width: 32px;
+  height: 32px;
+  background: #4A90E2;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 8px;
+}
+.quickStatItem .quickStatIcon svg {
+  width: 16px;
+  height: 16px;
+  color: #ffffff;
+  stroke-width: 2;
+}
+.quickStatItem .quickStatNumber {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C3E50;
+  margin-bottom: 4px;
+}
+.quickStatItem .quickStatLabel {
+  font-size: 10px;
+  color: #7F8C8D;
+}
+
+.recordList {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.recordHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.recordTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #2C3E50;
+}
+
+.sortBtn {
+  background: none;
+  border: none;
+  color: #7F8C8D;
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 12px;
+}
+.sortBtn svg {
+  width: 14px;
+  height: 14px;
+}
+.sortBtn:hover {
+  background: #F8FAFC;
+  color: #4A90E2;
+}
+
+.recordItem {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #E0E0E0;
+}
+.recordItem:last-child {
+  border-bottom: none;
+}
+
+.recordIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+.recordIcon svg {
+  width: 20px;
+  height: 20px;
+  color: #ffffff;
+  stroke-width: 2;
+}
+.recordIcon.donation {
+  background: linear-gradient(135deg, #52C41A 0%, #73D13D 100%);
+}
+.recordIcon.purchase {
+  background: linear-gradient(135deg, #17A2B8 0%, #52D2E8 100%);
+}
+.recordIcon.transfer {
+  background: linear-gradient(135deg, #FFB800 0%, #FFD93D 100%);
+}
+
+.recordContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.recordMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 4px;
+}
+
+.recordInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.recordTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: #2C3E50;
+  margin-bottom: 2px;
+  line-height: 1.3;
+}
+
+.recordDesc {
+  font-size: 12px;
+  color: #7F8C8D;
+  line-height: 1.4;
+}
+
+.recordAmount {
+  font-size: 16px;
+  font-weight: 700;
+  flex-shrink: 0;
+  margin-left: 8px;
+}
+.recordAmount.positive {
+  color: #52C41A;
+}
+.recordAmount.negative {
+  color: #FF4757;
+}
+
+.recordMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.recordDate {
+  font-size: 11px;
+  color: #7F8C8D;
+}
+
+.recordStatus {
+  font-size: 10px;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-weight: 600;
+}
+.recordStatus.completed {
+  background: rgba(82, 196, 26, 0.1);
+  color: #52C41A;
+}
+.recordStatus.pending {
+  background: rgba(255, 184, 0, 0.1);
+  color: #FFB800;
+}
+.recordStatus.processing {
+  background: rgba(23, 162, 184, 0.1);
+  color: #17A2B8;
+}
+
+.emptyState {
+  text-align: center;
+  padding: 20px 0;
+  color: #7F8C8D;
+}
+.emptyState svg {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+  opacity: 0.5;
+}
+.emptyState .emptyTitle {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.emptyState .emptyDesc {
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 12px;
+  }
+  .summaryStats {
+    gap: 12px;
+  }
+  .statItem .statNumber {
+    font-size: 20px;
+  }
+  .quickStats {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+  }
+  .dateRange {
+    grid-template-columns: 1fr;
+  }
+  .chartContainer {
+    height: 150px;
+  }
+  .recordMain {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .recordAmount {
+    margin-left: 0;
+    margin-top: 4px;
+  }
+}/*# sourceMappingURL=Record.module.css.map */

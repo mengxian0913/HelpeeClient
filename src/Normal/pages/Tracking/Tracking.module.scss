@@ -1,0 +1,479 @@
+// 色彩變數
+$primary-color: #4A90E2;
+$primary-light: #7CB4FF;
+$success-color: #52C41A;
+$warm-orange: #FF9500;
+$warm-pink: #FF6B9D;
+$warm-yellow: #FFD93D;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$white: #ffffff;
+$background-light: #F8FAFC;
+$border-color: #E0E0E0;
+
+// 間距變數
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+
+// 圓角變數
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// 陰影變數
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+.trackingPage {
+  min-height: 100vh;
+  background: $background-light;
+  padding-bottom: 80px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+// 頂部成就卡片
+.achievementCard {
+  background: linear-gradient(135deg, $warm-pink 0%, $warm-orange 100%);
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  margin-top: 20px;
+  margin-bottom: $spacing-xl;
+  color: $white;
+  box-shadow: $shadow-md;
+  position: relative;
+  overflow: hidden;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 200px;
+    height: 200px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30%;
+    left: -10%;
+    width: 150px;
+    height: 150px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 50%;
+    animation: float 8s ease-in-out infinite reverse;
+  }
+}
+
+.achievementHeader {
+  text-align: center;
+  margin-bottom: $spacing-lg;
+  position: relative;
+  z-index: 1;
+}
+
+.achievementIcon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-md;
+  
+  svg {
+    width: 32px;
+    height: 32px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.achievementTitle {
+  font-size: 18px;
+  font-weight: 600;
+  opacity: 0.95;
+  margin-bottom: $spacing-sm;
+}
+
+.achievementStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg;
+  position: relative;
+  z-index: 1;
+}
+
+.achievementStat {
+  text-align: center;
+  
+  .statNumber {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .statLabel {
+    font-size: 13px;
+    opacity: 0.9;
+  }
+}
+
+// 愛心足跡標題
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+  padding: 0 $spacing-sm;
+}
+
+.sectionTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: $text-primary;
+  margin: 0;
+}
+
+.sectionIcon {
+  width: 32px;
+  height: 32px;
+  background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    width: 18px;
+    height: 18px;
+    color: $white;
+    stroke-width: 2.5;
+  }
+}
+
+// 追蹤項目列表
+.trackingList {
+  background: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+}
+
+.trackingItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-lg;
+  border-bottom: 1px solid $border-color;
+  transition: all 0.3s ease;
+  position: relative;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  &:hover {
+    background: rgba(82, 196, 26, 0.02);
+    transform: translateX(4px);
+  }
+  
+  &::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+  
+  &:hover::before {
+    opacity: 1;
+  }
+}
+
+.trackingIcon {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: $spacing-lg;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+  box-shadow: 0 4px 12px rgba(82, 196, 26, 0.25);
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.trackingContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.trackingMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $spacing-sm;
+}
+
+.trackingInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.trackingTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+  line-height: 1.3;
+}
+
+.trackingDesc {
+  font-size: 13px;
+  color: $text-secondary;
+  line-height: 1.4;
+  margin-bottom: $spacing-xs;
+}
+
+.trackingAmount {
+  font-size: 18px;
+  font-weight: 700;
+  color: $success-color;
+  flex-shrink: 0;
+  margin-left: $spacing-md;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  .coinIcon {
+    width: 16px;
+    height: 16px;
+    color: $warm-yellow;
+  }
+}
+
+.trackingMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.trackingDate {
+  font-size: 12px;
+  color: $text-secondary;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.impactBadge {
+  font-size: 10px;
+  padding: 2px $spacing-sm;
+  border-radius: 10px;
+  font-weight: 600;
+  background: linear-gradient(135deg, rgba(255, 155, 0, 0.1) 0%, rgba(255, 107, 157, 0.1) 100%);
+  color: $warm-orange;
+  border: 1px solid rgba(255, 155, 0, 0.2);
+}
+
+// 統計卡片
+.statsCards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+  margin-bottom: $spacing-xl;
+}
+
+.statCard {
+  background: $white;
+  border-radius: $radius-md;
+  padding: $spacing-lg;
+  text-align: center;
+  box-shadow: $shadow-sm;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.statCardIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-md;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: $white;
+    stroke-width: 2;
+  }
+  
+  &.people {
+    background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  }
+  
+  &.heart {
+    background: linear-gradient(135deg, $warm-pink 0%, $warm-orange 100%);
+  }
+  
+  &.gift {
+    background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+  }
+}
+
+.statCardNumber {
+  font-size: 20px;
+  font-weight: 700;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.statCardLabel {
+  font-size: 11px;
+  color: $text-secondary;
+  font-weight: 500;
+}
+
+// 空狀態
+.emptyState {
+  text-align: center;
+  padding: $spacing-xl 0;
+  color: $text-secondary;
+  
+  .emptyIcon {
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(135deg, $background-light 0%, #F0F8FF 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto $spacing-lg;
+    
+    svg {
+      width: 40px;
+      height: 40px;
+      color: $text-secondary;
+      opacity: 0.5;
+    }
+  }
+  
+  .emptyTitle {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: $spacing-md;
+    color: $text-primary;
+  }
+  
+  .emptyDesc {
+    font-size: 14px;
+    line-height: 1.5;
+    margin-bottom: $spacing-lg;
+  }
+  
+  .emptyAction {
+    padding: $spacing-md $spacing-xl;
+    background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+    color: $white;
+    border: none;
+    border-radius: $radius-md;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
+    }
+  }
+}
+
+// 動畫
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+// 響應式設計
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 $spacing-md;
+  }
+  
+  .achievementStats {
+    gap: $spacing-md;
+  }
+  
+  .achievementStat .statNumber {
+    font-size: 24px;
+  }
+  
+  .statsCards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: $spacing-sm;
+  }
+  
+  .trackingMain {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $spacing-sm;
+  }
+  
+  .trackingAmount {
+    margin-left: 0;
+  }
+  
+  .trackingItem {
+    padding: $spacing-md;
+  }
+  
+  .trackingIcon {
+    width: 40px;
+    height: 40px;
+    margin-right: $spacing-md;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+}

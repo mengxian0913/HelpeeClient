@@ -1,0 +1,462 @@
+// 色彩變數
+$primary-color: #4A90E2;
+$primary-light: #7CB4FF;
+$success-color: #52C41A;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$white: #ffffff;
+$background-light: #F8FAFC;
+$border-color: #E0E0E0;
+
+// 間距變數
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+
+// 圓角變數
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// 陰影變數
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+.marketPage {
+  min-height: 100vh;
+  background: $background-light;
+  padding-bottom: 80px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+// 搜尋區域
+.searchSection {
+  background: $white;
+  padding: 20px;
+  margin: 0 (-$spacing-lg) $spacing-lg;
+  border-bottom: 1px solid $border-color;
+}
+
+.searchBar {
+  position: relative;
+  margin-bottom: $spacing-md;
+}
+
+.searchInput {
+  width: 100%;
+  padding: $spacing-md $spacing-lg $spacing-md 40px;
+  border: 1px solid $border-color;
+  border-radius: $radius-lg;
+  font-size: 14px;
+  background: $background-light;
+  
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  }
+}
+
+.searchIcon {
+  position: absolute;
+  left: $spacing-md;
+  top: 50%;
+  transform: translateY(-50%);
+  color: $text-secondary;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+// 篩選標籤
+.filterTabs {
+  display: flex;
+  gap: $spacing-sm;
+  overflow-x: auto;
+  padding-bottom: $spacing-xs;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.filterTab {
+  flex-shrink: 0;
+  padding: $spacing-sm $spacing-md;
+  background: $background-light;
+  color: $text-secondary;
+  border: 1px solid $border-color;
+  border-radius: $radius-lg;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover, &.active {
+    background: $primary-color;
+    color: $white;
+    border-color: $primary-color;
+  }
+}
+
+// 商品網格
+.productsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: $spacing-md;
+  margin-bottom: $spacing-xl;
+}
+
+.productCard {
+  background: $white;
+  border-radius: $radius-md;
+  overflow: hidden;
+  box-shadow: $shadow-sm;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.productImage {
+  width: 100%;
+  height: 120px;
+  background: linear-gradient(135deg, #E3F2FD 0%, #FFF3E0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  
+  svg {
+    width: 40px;
+    height: 40px;
+    color: $primary-color;
+  }
+}
+
+.productTag {
+  position: absolute;
+  top: $spacing-sm;
+  left: $spacing-sm;
+  background: $success-color;
+  color: $white;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px $spacing-sm;
+  border-radius: $radius-sm;
+}
+
+.productInfo {
+  padding: $spacing-md;
+}
+
+.productName {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+  line-height: 1.3;
+}
+
+.productDesc {
+  font-size: 12px;
+  color: $text-secondary;
+  margin-bottom: $spacing-sm;
+  line-height: 1.4;
+}
+
+.productPrice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 700;
+  color: $primary-color;
+}
+
+.addBtn {
+  width: 24px;
+  height: 24px;
+  background: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  svg {
+    width: 12px;
+    height: 12px;
+    stroke-width: 3;
+  }
+  
+  &:hover {
+    background: darken($primary-color, 10%);
+    transform: scale(1.1);
+  }
+}
+
+// Modal 樣式
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  z-index: 1000;
+  padding: 0 $spacing-lg $spacing-lg;
+}
+
+.modal {
+  background: $white;
+  border-radius: $radius-lg $radius-lg 0 0;
+  width: 100%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+  
+  &.open {
+    transform: translateY(0);
+  }
+}
+
+.modalHeader {
+  padding: $spacing-lg;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: $background-light;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: $text-secondary;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.modalContent {
+  padding: $spacing-lg;
+}
+
+.modalProductImage {
+  width: 100%;
+  height: 200px;
+  background: linear-gradient(135deg, #E3F2FD 0%, #FFF3E0 100%);
+  border-radius: $radius-md;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: $spacing-lg;
+  
+  svg {
+    width: 60px;
+    height: 60px;
+    color: $primary-color;
+  }
+}
+
+.modalProductInfo {
+  margin-bottom: $spacing-xl;
+}
+
+.modalProductName {
+  font-size: 20px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.modalProductDesc {
+  font-size: 14px;
+  color: $text-secondary;
+  line-height: 1.5;
+  margin-bottom: $spacing-lg;
+}
+
+.modalProductPrice {
+  font-size: 24px;
+  font-weight: 700;
+  color: $primary-color;
+  margin-bottom: $spacing-lg;
+}
+
+// 數量選擇器
+.quantitySelector {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: $spacing-xl;
+}
+
+.quantityLabel {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: $spacing-lg;
+}
+
+.quantityBtn {
+  width: 36px;
+  height: 36px;
+  border: 1px solid $border-color;
+  background: $white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+  }
+  
+  &:hover {
+    border-color: $primary-color;
+    color: $primary-color;
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.quantityValue {
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-primary;
+  min-width: 40px;
+  text-align: center;
+}
+
+// Modal 底部操作
+.modalActions {
+  padding: $spacing-lg;
+  border-top: 1px solid $border-color;
+  display: flex;
+  gap: $spacing-md;
+}
+
+.totalPrice {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.totalLabel {
+  font-size: 12px;
+  color: $text-secondary;
+  margin-bottom: $spacing-xs;
+}
+
+.totalAmount {
+  font-size: 20px;
+  font-weight: 700;
+  color: $primary-color;
+}
+
+.addToCartBtn {
+  flex: 1;
+  padding: $spacing-md $spacing-lg;
+  background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+  color: $white;
+  border: none;
+  border-radius: $radius-md;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+}
+
+// 響應式設計
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 $spacing-md;
+  }
+  
+  .searchSection {
+    margin: 0 (-$spacing-md) $spacing-md;
+  }
+  
+  .productsGrid {
+    gap: $spacing-sm;
+  }
+  
+  .modalOverlay {
+    padding: 0;
+  }
+  
+  .modal {
+    border-radius: $radius-lg $radius-lg 0 0;
+  }
+}

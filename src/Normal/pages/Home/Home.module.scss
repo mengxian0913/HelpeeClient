@@ -1,0 +1,355 @@
+// 色彩變數
+$primary-color: #4A90E2;
+$primary-light: #7CB4FF;
+$success-color: #52C41A;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$white: #ffffff;
+$background-light: #F8FAFC;
+$border-color: #E0E0E0;
+
+// 間距變數
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 15px;
+$spacing-lg: 20px;
+$spacing-xl: 30px;
+$spacing-2xl: 40px;
+$spacing-3xl: 60px;
+
+// 圓角變數
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// 陰影變數
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+.homePage {
+  width: 100%;
+  min-height: 100vh;
+  background: #F5F7FA;
+  padding-bottom: 80px; // 為底部導航留出空間
+}
+
+// 問候區域
+.greetingSection {
+  width: 100vw; // 使用 viewport width 確保滿寬
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: $spacing-xl 0 $spacing-lg;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  color: $white;
+  margin-bottom: $spacing-lg;
+}
+
+.greetingContent {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+  
+  .greeting {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .userName {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: $spacing-md;
+  }
+  
+  .userBalance {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    font-size: 14px;
+    opacity: 0.9;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+// 快速操作區域
+.quickActions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+  margin-bottom: $spacing-xl;
+}
+
+.actionCard {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  text-align: center;
+  box-shadow: $shadow-sm;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  .actionIcon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+    border-radius: $radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto $spacing-md;
+    
+    svg {
+      width: 24px;
+      height: 24px;
+      color: $white;
+      stroke-width: 2;
+    }
+  }
+  
+  &.secondary .actionIcon {
+    background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  }
+  
+  .actionTitle {
+    font-size: 16px;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .actionDesc {
+    font-size: 12px;
+    color: $text-secondary;
+  }
+}
+
+// 統計卡片
+.statsCard {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.statsTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg;
+}
+
+.statItem {
+  text-align: center;
+  
+  .statIcon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto $spacing-sm;
+    
+    svg {
+      width: 20px;
+      height: 20px;
+      color: $white;
+      stroke-width: 2;
+    }
+  }
+  
+  .statNumber {
+    font-size: 20px;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .statLabel {
+    font-size: 12px;
+    color: $text-secondary;
+  }
+}
+
+// 最新消息區域
+.newsSection {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.newsTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.newsItem {
+  display: flex;
+  gap: $spacing-md;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid #F0F0F0;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  .newsIcon {
+    width: 36px;
+    height: 36px;
+    background: linear-gradient(135deg, #FF6B6B 0%, #FFE66D 100%);
+    border-radius: $radius-sm;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    
+    svg {
+      width: 18px;
+      height: 18px;
+      color: $white;
+      stroke-width: 2;
+    }
+  }
+  
+  .newsContent {
+    flex: 1;
+    
+    .newsText {
+      font-size: 14px;
+      color: $text-primary;
+      margin-bottom: $spacing-xs;
+      line-height: 1.4;
+    }
+    
+    .newsTime {
+      font-size: 12px;
+      color: $text-secondary;
+    }
+  }
+}
+
+// 推薦商品區域
+.recommendSection {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.sectionHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-md;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.viewMore {
+  font-size: 12px;
+  color: $primary-color;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.productGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-md;
+}
+
+.productCard {
+  border: 1px solid #F0F0F0;
+  border-radius: $radius-md;
+  overflow: hidden;
+  background: $white;
+  
+  .productImage {
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(135deg, #E3F2FD 0%, #FFF3E0 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    svg {
+      width: 32px;
+      height: 32px;
+      color: $primary-color;
+    }
+  }
+  
+  .productInfo {
+    padding: $spacing-md;
+    
+    .productName {
+      font-size: 12px;
+      color: $text-primary;
+      margin-bottom: $spacing-xs;
+      font-weight: 500;
+    }
+    
+    .productPrice {
+      font-size: 14px;
+      color: $primary-color;
+      font-weight: 600;
+    }
+  }
+}
+
+// 響應式設計
+@media screen and (max-width: 480px) {
+  .greetingContent {
+    padding: 0 $spacing-md;
+  }
+  
+  .container {
+    padding: 0 $spacing-md;
+  }
+  
+  .quickActions {
+    gap: $spacing-sm;
+  }
+  
+  .actionCard {
+    padding: $spacing-md;
+  }
+}

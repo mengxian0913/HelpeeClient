@@ -1,0 +1,343 @@
+// 色彩變數 - 溫暖關懷主題
+$primary-color: #52C41A;
+$primary-light: #73D13D;
+$secondary-color: #FFB800;
+$accent-color: #17A2B8;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$white: #ffffff;
+$background-light: #F8FAFC;
+$border-color: #E0E0E0;
+$success-color: #52C41A;
+$warning-color: #FFB800;
+
+// 間距變數
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+
+// 圓角變數
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// 陰影變數
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+.homePage {
+  width: 100%;
+  min-height: 100vh;
+  background: $background-light;
+  padding-bottom: 80px;
+}
+
+// 歡迎區域
+.welcomeSection {
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  padding: $spacing-xl 0 $spacing-lg;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  color: $white;
+  margin-bottom: $spacing-lg;
+}
+
+.welcomeContent {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+  
+  .greeting {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .userName {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: $spacing-md;
+  }
+  
+  .balanceInfo {
+    display: flex;
+    align-items: center;
+    gap: $spacing-sm;
+    font-size: 14px;
+    opacity: 0.9;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
+  }
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+// 重要提醒卡片
+.alertCard {
+  background: linear-gradient(135deg, $warning-color 0%, #FFD93D 100%);
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  color: $white;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  box-shadow: $shadow-sm;
+}
+
+.alertIcon {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+  }
+}
+
+.alertContent {
+  flex: 1;
+  
+  .alertTitle {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .alertDesc {
+    font-size: 12px;
+    opacity: 0.9;
+  }
+}
+
+// 最近補助記錄
+.recentSection {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.recentHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-md;
+}
+
+.recentTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.viewAllBtn {
+  font-size: 12px;
+  color: $primary-color;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  svg {
+    width: 12px;
+    height: 12px;
+  }
+}
+
+.recentItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $border-color;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.recentIcon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, $success-color 0%, $primary-light 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: $spacing-md;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.recentContent {
+  flex: 1;
+  
+  .recentText {
+    font-size: 14px;
+    color: $text-primary;
+    margin-bottom: $spacing-xs;
+    font-weight: 500;
+  }
+  
+  .recentTime {
+    font-size: 12px;
+    color: $text-secondary;
+  }
+}
+
+.recentAmount {
+  font-size: 16px;
+  font-weight: 700;
+  color: $success-color;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  svg {
+    width: 14px;
+    height: 14px;
+    color: $warning-color;
+  }
+}
+
+// 政府公告區域
+.announcementSection {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.announcementItem {
+  display: flex;
+  gap: $spacing-md;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $border-color;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.announcementIcon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, $accent-color 0%, #52D2E8 100%);
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  svg {
+    width: 18px;
+    height: 18px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.announcementContent {
+  flex: 1;
+  
+  .announcementText {
+    font-size: 14px;
+    color: $text-primary;
+    margin-bottom: $spacing-xs;
+    line-height: 1.4;
+  }
+  
+  .announcementTime {
+    font-size: 12px;
+    color: $text-secondary;
+  }
+}
+
+// 服務據點區域
+.serviceSection {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.serviceItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $border-color;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.serviceInfo {
+  .serviceName {
+    font-size: 14px;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .serviceAddr {
+    font-size: 12px;
+    color: $text-secondary;
+  }
+}
+
+.serviceStatus {
+  font-size: 11px;
+  padding: 2px $spacing-sm;
+  border-radius: 10px;
+  font-weight: 600;
+  
+  &.open {
+    background: rgba(82, 196, 26, 0.1);
+    color: $success-color;
+  }
+  
+  &.closed {
+    background: rgba(255, 77, 79, 0.1);
+    color: #FF4757;
+  }
+}
+
+// 響應式設計
+@media screen and (max-width: 480px) {
+  .welcomeContent {
+    padding: 0 $spacing-md;
+  }
+  
+  .container {
+    padding: 0 $spacing-md;
+  }
+}

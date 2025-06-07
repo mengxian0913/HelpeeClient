@@ -1,0 +1,360 @@
+// 色彩變數
+$primary-color: #4A90E2;
+$primary-light: #7CB4FF;
+$success-color: #52C41A;
+$warning-color: #FFB800;
+$error-color: #FF4D4F;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$white: #ffffff;
+$background-light: #F8FAFC;
+$border-color: #E0E0E0;
+
+// 間距變數
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+
+// 圓角變數
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// 陰影變數
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+.profilePage {
+  min-height: 100vh;
+  background: $background-light;
+  padding-bottom: 80px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+// 個人資料卡片
+.profileCard {
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  margin-top: 20px;
+  margin-bottom: $spacing-xl;
+  color: $white;
+  box-shadow: $shadow-md;
+  text-align: center;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-lg;
+  
+  svg {
+    width: 40px;
+    height: 40px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.userName {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: $spacing-sm;
+}
+
+.userType {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: $spacing-md;
+}
+
+.userStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-md;
+  margin-top: $spacing-lg;
+}
+
+.statItem {
+  text-align: center;
+  
+  .statNumber {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .statLabel {
+    font-size: 11px;
+    opacity: 0.8;
+  }
+}
+
+// 選單項目
+.menuSection {
+  background: $white;
+  border-radius: $radius-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+}
+
+.sectionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  padding: $spacing-lg $spacing-lg $spacing-md;
+  margin: 0;
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-lg;
+  border-bottom: 1px solid $border-color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  &:hover {
+    background: rgba(74, 144, 226, 0.05);
+  }
+  
+  &.danger {
+    color: $error-color;
+    
+    &:hover {
+      background: rgba(255, 77, 79, 0.05);
+    }
+  }
+}
+
+.menuIcon {
+  width: 40px;
+  height: 40px;
+  background: $background-light;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: $spacing-md;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: $primary-color;
+    stroke-width: 2;
+  }
+  
+  .danger & {
+    background: rgba(255, 77, 79, 0.1);
+    
+    svg {
+      color: $error-color;
+    }
+  }
+}
+
+.menuContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.menuTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+  
+  .danger & {
+    color: $error-color;
+  }
+}
+
+.menuDesc {
+  font-size: 12px;
+  color: $text-secondary;
+  line-height: 1.4;
+}
+
+.menuArrow {
+  color: $text-secondary;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+  }
+}
+
+// 版本資訊
+.versionInfo {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+  text-align: center;
+}
+
+.appVersion {
+  font-size: 12px;
+  color: $text-secondary;
+  margin-bottom: $spacing-sm;
+}
+
+.appCopyright {
+  font-size: 11px;
+  color: $text-secondary;
+}
+
+// 登出確認 Modal
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: $spacing-lg;
+}
+
+.modal {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  
+  &.open {
+    transform: scale(1);
+  }
+}
+
+.modalIcon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 77, 79, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-lg;
+  
+  svg {
+    width: 30px;
+    height: 30px;
+    color: $error-color;
+    stroke-width: 2;
+  }
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.modalDesc {
+  font-size: 14px;
+  color: $text-secondary;
+  line-height: 1.5;
+  margin-bottom: $spacing-xl;
+}
+
+.modalActions {
+  display: flex;
+  gap: $spacing-md;
+}
+
+.cancelBtn {
+  flex: 1;
+  padding: $spacing-md $spacing-lg;
+  background: $background-light;
+  color: $text-secondary;
+  border: 1px solid $border-color;
+  border-radius: $radius-md;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: darken($background-light, 5%);
+  }
+}
+
+.logoutBtn {
+  flex: 1;
+  padding: $spacing-md $spacing-lg;
+  background: $error-color;
+  color: $white;
+  border: none;
+  border-radius: $radius-md;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: darken($error-color, 10%);
+  }
+}
+
+// 響應式設計
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 $spacing-md;
+  }
+  
+  .profileCard {
+    padding: $spacing-lg;
+  }
+  
+  .userName {
+    font-size: 18px;
+  }
+  
+  .userStats {
+    gap: $spacing-sm;
+  }
+  
+  .statItem .statNumber {
+    font-size: 16px;
+  }
+  
+  .menuItem {
+    padding: $spacing-md;
+  }
+  
+  .modalOverlay {
+    padding: $spacing-md;
+  }
+  
+  .modal {
+    padding: $spacing-lg;
+  }
+}

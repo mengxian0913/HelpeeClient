@@ -1,0 +1,856 @@
+// 色彩變數 - 溫暖關懷主題
+$primary-color: #52C41A;
+$primary-light: #73D13D;
+$secondary-color: #FFB800;
+$accent-color: #17A2B8;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$white: #ffffff;
+$background-light: #F8FAFC;
+$border-color: #E0E0E0;
+$success-color: #52C41A;
+$info-color: #17A2B8;
+
+// 間距變數
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+
+// 圓角變數
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// 陰影變數
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+.recivePage {
+  min-height: 100vh;
+  background: $background-light;
+  padding-bottom: 80px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+// 頂部統計卡片
+.summaryCard {
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  margin-top: 20px;
+  margin-bottom: $spacing-lg;
+  color: $white;
+  box-shadow: $shadow-md;
+  text-align: center;
+}
+
+.summaryIcon {
+  width: 60px;
+  height: 60px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-lg;
+  
+  svg {
+    width: 30px;
+    height: 30px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.summaryTitle {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: $spacing-sm;
+}
+
+.summaryAmount {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: $spacing-sm;
+}
+
+.summaryDesc {
+  font-size: 14px;
+  opacity: 0.9;
+  margin-bottom: $spacing-lg;
+}
+
+.summaryStats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: $spacing-lg;
+}
+
+.statItem {
+  text-align: center;
+  
+  .statNumber {
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .statLabel {
+    font-size: 11px;
+    opacity: 0.8;
+  }
+}
+
+// 日期篩選區域
+.filterSection {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: 0;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+  overflow: hidden;
+}
+
+.filterHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-lg;
+  background: linear-gradient(135deg, rgba(82, 196, 26, 0.05) 0%, rgba(115, 209, 61, 0.05) 100%);
+  border-bottom: 1px solid $border-color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    background: linear-gradient(135deg, rgba(82, 196, 26, 0.08) 0%, rgba(115, 209, 61, 0.08) 100%);
+  }
+}
+
+.filterTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  
+  svg {
+    width: 18px;
+    height: 18px;
+    color: $primary-color;
+    stroke-width: 2;
+  }
+}
+
+.filterToggle {
+  background: rgba(82, 196, 26, 0.1);
+  border: none;
+  color: $primary-color;
+  cursor: pointer;
+  padding: $spacing-sm;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    width: 18px;
+    height: 18px;
+    transition: transform 0.3s ease;
+    stroke-width: 2.5;
+  }
+  
+  &.expanded {
+    background: $primary-color;
+    color: $white;
+    
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.filterContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  background: $white;
+  
+  &.expanded {
+    max-height: 300px;
+    padding: $spacing-lg;
+    border-top: 1px solid rgba(82, 196, 26, 0.1);
+  }
+}
+
+.filterRow {
+  margin-bottom: $spacing-lg;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.filterLabel {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    color: $primary-color;
+    stroke-width: 2;
+  }
+}
+
+.quickFilters {
+  display: flex;
+  gap: $spacing-sm;
+  flex-wrap: wrap;
+}
+
+.quickFilterBtn {
+  padding: $spacing-sm $spacing-lg;
+  background: $background-light;
+  color: $text-secondary;
+  border: 2px solid transparent;
+  border-radius: $radius-lg;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  position: relative;
+  
+  svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2;
+  }
+  
+  &:hover {
+    background: rgba(82, 196, 26, 0.1);
+    color: $primary-color;
+    border-color: rgba(82, 196, 26, 0.2);
+    transform: translateY(-1px);
+  }
+  
+  &.active {
+    background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+    color: $white;
+    border-color: $primary-color;
+    box-shadow: 0 2px 8px rgba(82, 196, 26, 0.3);
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: -2px;
+      left: -2px;
+      right: -2px;
+      bottom: -2px;
+      background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+      border-radius: $radius-lg;
+      z-index: -1;
+    }
+  }
+}
+
+.dateRange {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: $spacing-md;
+  align-items: center;
+}
+
+.dateInputWrapper {
+  position: relative;
+}
+
+.dateInput {
+  width: 100%;
+  padding: $spacing-md $spacing-lg;
+  border: 2px solid $border-color;
+  border-radius: $radius-md;
+  font-size: 14px;
+  background: $white;
+  color: $text-primary;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(82, 196, 26, 0.1);
+  }
+  
+  &:hover {
+    border-color: lighten($primary-color, 20%);
+  }
+  
+  &::placeholder {
+    color: $text-secondary;
+  }
+}
+
+.dateInputLabel {
+  position: absolute;
+  top: -8px;
+  left: $spacing-md;
+  background: $white;
+  padding: 0 $spacing-xs;
+  font-size: 11px;
+  font-weight: 600;
+  color: $text-secondary;
+  pointer-events: none;
+}
+
+.dateSeparator {
+  color: $text-secondary;
+  font-weight: 600;
+  font-size: 14px;
+  text-align: center;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+  }
+}
+
+.filterActions {
+  display: flex;
+  gap: $spacing-sm;
+  justify-content: flex-end;
+  margin-top: $spacing-lg;
+  padding-top: $spacing-lg;
+  border-top: 1px solid rgba(224, 224, 224, 0.5);
+}
+
+.clearBtn {
+  padding: $spacing-sm $spacing-lg;
+  background: none;
+  color: $text-secondary;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2;
+  }
+  
+  &:hover {
+    background: $background-light;
+    color: $text-primary;
+  }
+}
+
+.applyBtn {
+  padding: $spacing-sm $spacing-lg;
+  background: $primary-color;
+  color: $white;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2;
+  }
+  
+  &:hover {
+    background: darken($primary-color, 10%);
+    transform: translateY(-1px);
+    box-shadow: 0 2px 8px rgba(82, 196, 26, 0.3);
+  }
+}
+
+.filterSummary {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+  padding: $spacing-sm $spacing-lg;
+  background: rgba(82, 196, 26, 0.05);
+  border-radius: $radius-sm;
+  font-size: 12px;
+  color: $text-secondary;
+  margin-top: $spacing-md;
+  
+  svg {
+    width: 14px;
+    height: 14px;
+    color: $primary-color;
+    stroke-width: 2;
+  }
+}
+
+// 歷史記錄列表
+.historySection {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.historyHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: $spacing-lg;
+}
+
+.historyTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.sortBtn {
+  background: none;
+  border: none;
+  color: $text-secondary;
+  cursor: pointer;
+  padding: $spacing-xs;
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  font-size: 12px;
+  
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  &:hover {
+    background: $background-light;
+    color: $primary-color;
+  }
+}
+
+.historyItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $border-color;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  &:hover {
+    background: rgba(82, 196, 26, 0.05);
+    border-radius: $radius-sm;
+    margin: 0 (-$spacing-sm);
+    padding: $spacing-md $spacing-sm;
+  }
+}
+
+.historyIcon {
+  width: 48px;
+  height: 48px;
+  background: linear-gradient(135deg, $success-color 0%, $primary-light 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: $spacing-md;
+  flex-shrink: 0;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.historyContent {
+  flex: 1;
+  min-width: 0;
+}
+
+.historyMain {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: $spacing-xs;
+}
+
+.historyInfo {
+  flex: 1;
+  min-width: 0;
+}
+
+.historyTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: 2px;
+}
+
+.historyDesc {
+  font-size: 12px;
+  color: $text-secondary;
+}
+
+.historyAmount {
+  font-size: 18px;
+  font-weight: 700;
+  color: $success-color;
+  flex-shrink: 0;
+  margin-left: $spacing-sm;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    color: $secondary-color;
+  }
+}
+
+.historyMeta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: $spacing-sm;
+}
+
+.historyDate {
+  font-size: 11px;
+  color: $text-secondary;
+}
+
+.historySource {
+  font-size: 10px;
+  padding: 2px $spacing-sm;
+  border-radius: 10px;
+  font-weight: 600;
+  
+  &.government {
+    background: rgba(23, 162, 184, 0.1);
+    color: $info-color;
+  }
+  
+  &.donation {
+    background: rgba(82, 196, 26, 0.1);
+    color: $success-color;
+  }
+  
+  &.emergency {
+    background: rgba(255, 184, 0, 0.1);
+    color: $secondary-color;
+  }
+}
+
+// 詳情 Modal
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: $spacing-lg;
+}
+
+.modal {
+  background: $white;
+  border-radius: $radius-lg;
+  width: 100%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+  
+  &.open {
+    transform: scale(1);
+  }
+}
+
+.modalHeader {
+  padding: $spacing-lg;
+  border-bottom: 1px solid $border-color;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modalTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.closeBtn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: $background-light;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: $text-secondary;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.modalContent {
+  padding: $spacing-lg;
+}
+
+.modalSummary {
+  text-align: center;
+  padding: $spacing-lg;
+  background: $background-light;
+  border-radius: $radius-md;
+  margin-bottom: $spacing-lg;
+}
+
+.modalAmount {
+  font-size: 28px;
+  font-weight: 700;
+  color: $success-color;
+  margin-bottom: $spacing-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  
+  svg {
+    width: 24px;
+    height: 24px;
+    color: $secondary-color;
+  }
+}
+
+.modalDate {
+  font-size: 14px;
+  color: $text-secondary;
+  margin-bottom: $spacing-sm;
+}
+
+.modalType {
+  font-size: 12px;
+  padding: $spacing-xs $spacing-md;
+  border-radius: $radius-lg;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.donorsSection {
+  margin-bottom: $spacing-lg;
+}
+
+.donorsTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+}
+
+.donorItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md;
+  background: $background-light;
+  border-radius: $radius-sm;
+  margin-bottom: $spacing-sm;
+  
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.donorAvatar {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: $spacing-md;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.donorInfo {
+  flex: 1;
+  
+  .donorName {
+    font-size: 14px;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: 2px;
+  }
+  
+  .donorTime {
+    font-size: 12px;
+    color: $text-secondary;
+  }
+}
+
+.donorAmount {
+  font-size: 16px;
+  font-weight: 700;
+  color: $success-color;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  svg {
+    width: 14px;
+    height: 14px;
+    color: $secondary-color;
+  }
+}
+
+// 空狀態
+.emptyState {
+  text-align: center;
+  padding: $spacing-xl 0;
+  color: $text-secondary;
+  
+  svg {
+    width: 48px;
+    height: 48px;
+    margin-bottom: $spacing-md;
+    opacity: 0.5;
+  }
+  
+  .emptyTitle {
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: $spacing-sm;
+  }
+  
+  .emptyDesc {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
+// 動畫
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// 響應式設計
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 $spacing-md;
+  }
+  
+  .summaryStats {
+    gap: $spacing-md;
+  }
+  
+  .statItem .statNumber {
+    font-size: 18px;
+  }
+  
+  .dateRange {
+    grid-template-columns: 1fr;
+    gap: $spacing-sm;
+  }
+  
+  .dateSeparator {
+    display: none;
+  }
+  
+  .quickFilters {
+    gap: $spacing-xs;
+  }
+  
+  .quickFilterBtn {
+    font-size: 12px;
+    padding: $spacing-xs $spacing-md;
+  }
+  
+  .filterActions {
+    flex-direction: column;
+    gap: $spacing-sm;
+  }
+  
+  .clearBtn,
+  .applyBtn {
+    justify-content: center;
+  }
+  
+  .modalOverlay {
+    padding: $spacing-md;
+  }
+  
+  .modalAmount {
+    font-size: 24px;
+  }
+  
+  .historyMain {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .historyAmount {
+    margin-left: 0;
+    margin-top: $spacing-xs;
+  }
+}

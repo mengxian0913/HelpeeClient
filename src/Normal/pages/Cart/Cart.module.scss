@@ -1,0 +1,446 @@
+// 色彩變數
+$primary-color: #4A90E2;
+$primary-light: #7CB4FF;
+$success-color: #52C41A;
+$warning-color: #FFB800;
+$error-color: #FF4D4F;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$white: #ffffff;
+$background-light: #F8FAFC;
+$border-color: #E0E0E0;
+
+// 間距變數
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+
+// 圓角變數
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// 陰影變數
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+.cartPage {
+  min-height: 100vh;
+  background: $background-light;
+  padding-bottom: 120px; // 為底部結算區域和導航留出空間
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+// 頂部標題區域
+.header {
+  background: $white;
+  padding: $spacing-xl $spacing-lg;
+  margin: 0 (-$spacing-lg) $spacing-lg;
+  border-bottom: 1px solid $border-color;
+  position: sticky;
+  top: 64px; // Header 高度
+  z-index: 10;
+}
+
+.headerTitle {
+  font-size: 20px;
+  font-weight: 600;
+  color: $text-primary;
+  text-align: center;
+  margin: 0;
+}
+
+.itemCount {
+  font-size: 14px;
+  color: $text-secondary;
+  text-align: center;
+  margin-top: $spacing-xs;
+}
+
+// 購物車項目列表
+.cartList {
+  margin-bottom: $spacing-xl;
+}
+
+.cartItem {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-md;
+  box-shadow: $shadow-sm;
+  display: flex;
+  gap: $spacing-md;
+  transition: all 0.3s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: $shadow-md;
+  }
+}
+
+.itemImage {
+  width: 80px;
+  height: 80px;
+  border-radius: $radius-md;
+  overflow: hidden;
+  flex-shrink: 0;
+  background: $background-light;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  svg {
+    width: 40px;
+    height: 40px;
+    color: $primary-color;
+  }
+}
+
+.itemContent {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.itemInfo {
+  margin-bottom: $spacing-sm;
+}
+
+.itemName {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+  line-height: 1.3;
+}
+
+.itemPrice {
+  font-size: 18px;
+  font-weight: 700;
+  color: $primary-color;
+  margin-bottom: $spacing-xs;
+}
+
+.itemSubtotal {
+  font-size: 14px;
+  color: $text-secondary;
+}
+
+.itemActions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// 數量控制器
+.quantityControls {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  background: $background-light;
+  border-radius: $radius-lg;
+  padding: $spacing-xs;
+}
+
+.quantityBtn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: $white;
+  color: $text-primary;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+  }
+  
+  &:hover:not(:disabled) {
+    background: $primary-color;
+    color: $white;
+    transform: scale(1.1);
+  }
+  
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}
+
+.quantityValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  min-width: 24px;
+  text-align: center;
+}
+
+// 刪除按鈕
+.removeBtn {
+  width: 32px;
+  height: 32px;
+  border: none;
+  background: rgba(255, 77, 79, 0.1);
+  color: $error-color;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+  }
+  
+  &:hover {
+    background: $error-color;
+    color: $white;
+    transform: scale(1.1);
+  }
+}
+
+// 空購物車狀態
+.emptyCart {
+  text-align: center;
+  padding: $spacing-xl 0;
+  background: $white;
+  border-radius: $radius-lg;
+  box-shadow: $shadow-sm;
+}
+
+.emptyIcon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, $background-light 0%, #F0F8FF 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-lg;
+  
+  svg {
+    width: 40px;
+    height: 40px;
+    color: $text-secondary;
+    opacity: 0.5;
+  }
+}
+
+.emptyTitle {
+  font-size: 18px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-sm;
+}
+
+.emptyDesc {
+  font-size: 14px;
+  color: $text-secondary;
+  line-height: 1.5;
+  margin-bottom: $spacing-xl;
+}
+
+.shopBtn {
+  padding: $spacing-md $spacing-xl;
+  background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+  color: $white;
+  border: none;
+  border-radius: $radius-md;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-sm;
+  
+  svg {
+    width: 18px;
+    height: 18px;
+  }
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
+  }
+}
+
+// 底部結算區域
+.checkoutSection {
+  position: fixed;
+  bottom: 70px; // 底部導航高度
+  left: 0;
+  right: 0;
+  background: $white;
+  border-top: 1px solid $border-color;
+  padding: $spacing-lg;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+  z-index: 20;
+}
+
+.checkoutContainer {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+// 總價區域
+.totalSection {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.totalInfo {
+  display: flex;
+  flex-direction: column;
+  gap: $spacing-xs;
+}
+
+.totalAmount {
+  font-size: 20px;
+  font-weight: 700;
+  color: $text-primary;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  
+  .coinIcon {
+    width: 18px;
+    height: 18px;
+    color: $warning-color;
+  }
+}
+
+// 結帳按鈕
+.checkoutBtn {
+  padding: $spacing-md $spacing-xl;
+  background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+  color: $white;
+  border: none;
+  border-radius: $radius-md;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  min-width: 140px;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+  
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(82, 196, 26, 0.3);
+  }
+  
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+}
+
+// 清空購物車按鈕
+.clearCartBtn {
+  background: none;
+  border: none;
+  color: $text-secondary;
+  font-size: 14px;
+  cursor: pointer;
+  padding: $spacing-sm;
+  border-radius: $radius-sm;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  margin: 0 auto;
+  margin-bottom: 50px;
+  
+  svg {
+    width: 14px;
+    height: 14px;
+  }
+  
+  &:hover {
+    color: $error-color;
+    background: rgba(255, 77, 79, 0.1);
+  }
+}
+
+// 響應式設計
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 $spacing-md;
+  }
+  
+  .header {
+    padding: $spacing-lg $spacing-md;
+    margin: 0 (-$spacing-md) $spacing-md;
+  }
+  
+  .cartItem {
+    padding: $spacing-md;
+    gap: $spacing-sm;
+  }
+  
+  .itemImage {
+    width: 60px;
+    height: 60px;
+  }
+  
+  .itemName {
+    font-size: 14px;
+  }
+  
+  .itemPrice {
+    font-size: 16px;
+  }
+  
+  .checkoutSection {
+    padding: $spacing-md;
+  }
+  
+  .totalAmount {
+    font-size: 18px;
+  }
+  
+  .checkoutBtn {
+    font-size: 16px;
+    padding: $spacing-md $spacing-lg;
+    min-width: 120px;
+  }
+  
+  .totalSection {
+    gap: $spacing-md;
+  }
+}

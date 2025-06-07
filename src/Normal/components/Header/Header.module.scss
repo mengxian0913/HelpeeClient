@@ -1,0 +1,218 @@
+// 色彩變數
+$primary-color: #4A90E2;
+$primary-light: #7CB4FF;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$white: #ffffff;
+$background-light: #F8FAFC;
+$border-color: #E0E0E0;
+$success-color: #52C41A;
+
+// 間距變數
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+
+// 圓角變數
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// 陰影變數
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+.header {
+  background: $white;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 1px solid $border-color;
+}
+
+.statusBar {
+  padding: $spacing-sm $spacing-lg;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 44px;
+}
+
+.logoSection {
+  display: flex;
+  align-items: center;
+  gap: $spacing-sm;
+}
+
+.logo {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    color: $white;
+    stroke-width: 2.5;
+  }
+}
+
+.logoText {
+  font-size: 16px;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+.statusActions {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+}
+
+.donateBtn {
+  display: flex;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-xs $spacing-md;
+  background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+  color: $white;
+  border: none;
+  border-radius: $radius-lg;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  svg {
+    width: 14px;
+    height: 14px;
+    stroke-width: 2.5;
+  }
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+.cartBtn {
+  position: relative;
+  padding: $spacing-sm;
+  background: none;
+  border: none;
+  color: $text-secondary;
+  cursor: pointer;
+  border-radius: $radius-sm;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    stroke-width: 2;
+  }
+}
+
+.cartBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: #FF4757;
+  color: $white;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 2px 5px;
+  border-radius: 8px;
+  min-width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.userAvatar {
+  width: 28px;
+  height: 28px;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  
+  svg {
+    width: 14px;
+    height: 14px;
+    color: $white;
+    stroke-width: 2.5;
+  }
+}
+
+// 底部導航
+.bottomNav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $white;
+  border-top: 1px solid $border-color;
+  z-index: 100;
+  padding: $spacing-sm 0;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.navContainer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+.navItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacing-xs;
+  padding: $spacing-sm;
+  color: $text-secondary;
+  text-decoration: none;
+  border-radius: $radius-sm;
+  transition: all 0.3s ease;
+  min-width: 60px;
+  
+  svg {
+    width: 22px;
+    height: 22px;
+    stroke-width: 2;
+  }
+  
+  span {
+    font-size: 10px;
+    font-weight: 500;
+  }
+  
+  &.active {
+    color: $primary-color;
+    
+    svg {
+      stroke-width: 2.5;
+    }
+    
+    span {
+      font-weight: 600;
+    }
+  }
+  
+  &:hover:not(.active) {
+    color: lighten($text-secondary, 10%);
+  }
+}
+
+// 頁面內容區域需要底部padding
+.pageContent {
+  padding-bottom: 80px; // 為底部導航留出空間
+}
