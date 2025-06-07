@@ -23,6 +23,7 @@ import DisHeader from "./Disadvantaged/components/Header/Header";
 import DisRecive from "./Disadvantaged/pages/Recive/Recive";
 import DisRecord from "./Disadvantaged/pages/Record/Record";
 import DisNotification from "./Disadvantaged/pages/Notification/Notification";
+import DisProfile from "./Disadvantaged/pages/Profile/Profile";
 
 import { UserState, UserStateEnum } from "./utils/type";
 import { apiCheckUserState } from "./API/auth";
@@ -98,6 +99,7 @@ const App: React.FC = () => {
           <Route path="/receive" element={<DisRecive />} />
           <Route path="/records" element={<DisRecord />} />
           <Route path="/notifications" element={<DisNotification />} />
+          <Route path="/profile" element={<DisProfile />} />
         </Routes>
         {/* <Footer /> */}
       </BrowserRouter>

@@ -2,7 +2,6 @@
 $primary-color: #4A90E2;
 $primary-light: #7CB4FF;
 $success-color: #52C41A;
-$warning-color: #FFB800;
 $error-color: #FF4D4F;
 $text-primary: #2C3E50;
 $text-secondary: #7F8C8D;
@@ -16,6 +15,7 @@ $spacing-sm: 8px;
 $spacing-md: 12px;
 $spacing-lg: 16px;
 $spacing-xl: 20px;
+$spacing-2xl: 24px;
 
 // 圓角變數
 $radius-sm: 8px;
@@ -40,25 +40,53 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
 
 // 個人資料卡片
 .profileCard {
-  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  background: $white;
   border-radius: $radius-lg;
-  padding: $spacing-xl;
+  padding: $spacing-2xl;
   margin-top: 20px;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+  position: relative;
+}
+
+.profileHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
   margin-bottom: $spacing-xl;
-  color: $white;
-  box-shadow: $shadow-md;
-  text-align: center;
+}
+
+.avatarSection {
+  position: relative;
+}
+
+.avatarWrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.3s ease;
+  
+  &:hover .avatarOverlay {
+    opacity: 1;
+  }
 }
 
 .avatar {
-  width: 80px;
-  height: 80px;
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatarPlaceholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto $spacing-lg;
   
   svg {
     width: 40px;
@@ -68,164 +96,8 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
   }
 }
 
-.userName {
-  font-size: 20px;
-  font-weight: 600;
-  margin-bottom: $spacing-sm;
-}
-
-.userType {
-  font-size: 14px;
-  opacity: 0.9;
-  margin-bottom: $spacing-md;
-}
-
-.userStats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: $spacing-md;
-  margin-top: $spacing-lg;
-}
-
-.statItem {
-  text-align: center;
-  
-  .statNumber {
-    font-size: 18px;
-    font-weight: 700;
-    margin-bottom: $spacing-xs;
-  }
-  
-  .statLabel {
-    font-size: 11px;
-    opacity: 0.8;
-  }
-}
-
-// 選單項目
-.menuSection {
-  background: $white;
-  border-radius: $radius-lg;
-  margin-bottom: $spacing-lg;
-  box-shadow: $shadow-sm;
-  overflow: hidden;
-}
-
-.sectionTitle {
-  font-size: 16px;
-  font-weight: 600;
-  color: $text-primary;
-  padding: $spacing-lg $spacing-lg $spacing-md;
-  margin: 0;
-}
-
-.menuItem {
-  display: flex;
-  align-items: center;
-  padding: $spacing-lg;
-  border-bottom: 1px solid $border-color;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  
-  &:last-child {
-    border-bottom: none;
-  }
-  
-  &:hover {
-    background: rgba(74, 144, 226, 0.05);
-  }
-  
-  &.danger {
-    color: $error-color;
-    
-    &:hover {
-      background: rgba(255, 77, 79, 0.05);
-    }
-  }
-}
-
-.menuIcon {
-  width: 40px;
-  height: 40px;
-  background: $background-light;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-right: $spacing-md;
-  
-  svg {
-    width: 20px;
-    height: 20px;
-    color: $primary-color;
-    stroke-width: 2;
-  }
-  
-  .danger & {
-    background: rgba(255, 77, 79, 0.1);
-    
-    svg {
-      color: $error-color;
-    }
-  }
-}
-
-.menuContent {
-  flex: 1;
-  min-width: 0;
-}
-
-.menuTitle {
-  font-size: 14px;
-  font-weight: 600;
-  color: $text-primary;
-  margin-bottom: $spacing-xs;
-  
-  .danger & {
-    color: $error-color;
-  }
-}
-
-.menuDesc {
-  font-size: 12px;
-  color: $text-secondary;
-  line-height: 1.4;
-}
-
-.menuArrow {
-  color: $text-secondary;
-  
-  svg {
-    width: 16px;
-    height: 16px;
-    stroke-width: 2;
-  }
-}
-
-// 版本資訊
-.versionInfo {
-  background: $white;
-  border-radius: $radius-lg;
-  padding: $spacing-lg;
-  margin-bottom: $spacing-lg;
-  box-shadow: $shadow-sm;
-  text-align: center;
-}
-
-.appVersion {
-  font-size: 12px;
-  color: $text-secondary;
-  margin-bottom: $spacing-sm;
-}
-
-.appCopyright {
-  font-size: 11px;
-  color: $text-secondary;
-}
-
-// 登出確認 Modal
-.modalOverlay {
-  position: fixed;
+.avatarOverlay {
+  position: absolute;
   top: 0;
   left: 0;
   right: 0;
@@ -234,93 +106,336 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 1000;
-  padding: $spacing-lg;
-}
-
-.modal {
-  background: $white;
-  border-radius: $radius-lg;
-  padding: $spacing-xl;
-  width: 100%;
-  max-width: 320px;
-  text-align: center;
-  transform: scale(0.9);
-  transition: transform 0.3s ease;
-  
-  &.open {
-    transform: scale(1);
-  }
-}
-
-.modalIcon {
-  width: 60px;
-  height: 60px;
-  background: rgba(255, 77, 79, 0.1);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 0 auto $spacing-lg;
+  opacity: 0;
+  transition: opacity 0.3s ease;
   
   svg {
-    width: 30px;
-    height: 30px;
-    color: $error-color;
+    width: 20px;
+    height: 20px;
+    color: $white;
     stroke-width: 2;
   }
 }
 
-.modalTitle {
-  font-size: 18px;
+.hiddenInput {
+  display: none;
+}
+
+.editBtn {
+  width: 36px;
+  height: 36px;
+  background: $background-light;
+  border: 1px solid $border-color;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    color: $text-secondary;
+    stroke-width: 2;
+  }
+  
+  &:hover {
+    background: $primary-color;
+    border-color: $primary-color;
+    
+    svg {
+      color: $white;
+    }
+  }
+}
+
+.profileInfo {
+  text-align: center;
+}
+
+.userName {
+  font-size: 20px;
   font-weight: 600;
   color: $text-primary;
   margin-bottom: $spacing-sm;
 }
 
-.modalDesc {
-  font-size: 14px;
-  color: $text-secondary;
-  line-height: 1.5;
-  margin-bottom: $spacing-xl;
-}
-
-.modalActions {
-  display: flex;
-  gap: $spacing-md;
-}
-
-.cancelBtn {
-  flex: 1;
-  padding: $spacing-md $spacing-lg;
-  background: $background-light;
-  color: $text-secondary;
-  border: 1px solid $border-color;
-  border-radius: $radius-md;
-  font-size: 14px;
+.userRank {
+  display: inline-flex;
+  align-items: center;
+  gap: $spacing-xs;
+  background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+  color: $white;
+  padding: $spacing-xs $spacing-md;
+  border-radius: $radius-lg;
+  font-size: 12px;
   font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s ease;
+  margin-bottom: $spacing-lg;
   
-  &:hover {
-    background: darken($background-light, 5%);
+  svg {
+    width: 14px;
+    height: 14px;
   }
 }
 
-.logoutBtn {
-  flex: 1;
+.contactInfo {
+  text-align: left;
+  margin-top: $spacing-lg;
+}
+
+.infoItem {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid $border-color;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    color: $primary-color;
+    stroke-width: 2;
+    flex-shrink: 0;
+  }
+  
+  span {
+    font-size: 14px;
+    color: $text-primary;
+    line-height: 1.4;
+  }
+}
+
+// 編輯表單
+.editForm {
+  width: 100%;
+}
+
+.formGroup {
+  margin-bottom: $spacing-lg;
+  text-align: left;
+  
+  label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+    color: $text-primary;
+    margin-bottom: $spacing-sm;
+  }
+}
+
+.editInput {
+  width: 100%;
+  padding: $spacing-md;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    outline: none;
+    border-color: $primary-color;
+    box-shadow: 0 0 0 3px rgba(74, 144, 226, 0.1);
+  }
+}
+
+.saveBtn {
+  width: 100%;
   padding: $spacing-md $spacing-lg;
-  background: $error-color;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
   color: $white;
   border: none;
-  border-radius: $radius-md;
+  border-radius: $radius-sm;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+  }
   
   &:hover {
-    background: darken($error-color, 10%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(74, 144, 226, 0.3);
+  }
+}
+
+// 統計卡片
+.statsCard {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.statsTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+  text-align: center;
+}
+
+.statsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg;
+}
+
+.statItem {
+  text-align: center;
+}
+
+.statIcon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-sm;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.statNumber {
+  font-size: 20px;
+  font-weight: 700;
+  color: $primary-color;
+  margin-bottom: $spacing-xs;
+}
+
+.statLabel {
+  font-size: 12px;
+  color: $text-secondary;
+}
+
+// 功能選單
+.menuCard {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.menuItem {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  padding: $spacing-lg;
+  background: none;
+  border: none;
+  border-radius: $radius-sm;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: left;
+  
+  &:hover {
+    background: $background-light;
+  }
+  
+  &:not(:last-child) {
+    border-bottom: 1px solid $border-color;
+    margin-bottom: $spacing-sm;
+    padding-bottom: $spacing-lg;
+  }
+}
+
+.menuIcon {
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  
+  svg {
+    width: 18px;
+    height: 18px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.menuContent {
+  flex: 1;
+}
+
+.menuTitle {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.menuSubtitle {
+  font-size: 12px;
+  color: $text-secondary;
+}
+
+.menuBadge {
+  background: $success-color;
+  color: $white;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px $spacing-sm;
+  border-radius: $radius-lg;
+}
+
+.menuArrow {
+  width: 16px;
+  height: 16px;
+  color: $text-secondary;
+  stroke-width: 2;
+}
+
+// 登出按鈕
+.logoutBtn {
+  width: 100%;
+  padding: $spacing-lg;
+  background: $white;
+  color: $error-color;
+  border: 1px solid $error-color;
+  border-radius: $radius-sm;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: $spacing-sm;
+  
+  svg {
+    width: 16px;
+    height: 16px;
+    stroke-width: 2;
+  }
+  
+  &:hover {
+    background: $error-color;
+    color: $white;
   }
 }
 
@@ -334,27 +449,30 @@ $shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
     padding: $spacing-lg;
   }
   
+  .avatarWrapper {
+    width: 70px;
+    height: 70px;
+  }
+  
   .userName {
     font-size: 18px;
   }
   
-  .userStats {
-    gap: $spacing-sm;
-  }
-  
-  .statItem .statNumber {
-    font-size: 16px;
+  .statsGrid {
+    gap: $spacing-md;
   }
   
   .menuItem {
     padding: $spacing-md;
   }
   
-  .modalOverlay {
-    padding: $spacing-md;
-  }
-  
-  .modal {
-    padding: $spacing-lg;
+  .menuIcon {
+    width: 32px;
+    height: 32px;
+    
+    svg {
+      width: 16px;
+      height: 16px;
+    }
   }
 }

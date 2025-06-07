@@ -22,7 +22,7 @@ export const apiAddProduct = async (itemID: string, amount: number): Promise<str
     params.append("amount", amount.toString());
 
     const response = await axios.post(
-      `${API_BASE_URL}/purchase/`,
+      `${API_BASE_URL}/api/purchase/`,
       params,
       {
         headers: {
@@ -45,5 +45,38 @@ export const apiAddProduct = async (itemID: string, amount: number): Promise<str
       console.error("Unexpected error during adding product:", error);
     }
     throw error;
+  }
+}
+
+export const apiGetProductHistory = async (): Promise<any[]> => {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      throw new Error("No authentication token found. Please log in.");
+    }
+
+    const response = await axios.get(`${API_BASE_URL}/get_user_purchase_history/`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    console.log('====================================');
+    console.log("Product history response:", response.data);
+    console.log('====================================');
+
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      console.error("Failed to fetch product history:", response.data);
+      return [];
+    }  
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      console.error("API request failed:", error.response?.data || error.message);
+    } else {
+      console.error("Unexpected error during fetching product history:", error);
+    }
+    return [];
   }
 }

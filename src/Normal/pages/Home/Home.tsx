@@ -17,6 +17,7 @@ import {
 import Header from "../../components/Header/Header";
 import styles from "./Home.module.scss";
 import { useNavigate } from "react-router-dom";
+import { apiGetProducts } from "@/Normal/API/product";
 
 interface Product {
   id: string;
@@ -33,6 +34,7 @@ const Home: React.FC = () => {
   const [quantity, setQuantity] = useState(1);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [userBalance] = useState(1250); // 模擬用戶餘額
+  const [products, setProducts] = useState<Product[]>([]);
 
   const handleDonateClick = () => {
     navigation("/donations");
@@ -72,36 +74,21 @@ const Home: React.FC = () => {
     },
   ];
 
-  const products: Product[] = [
-    { 
-      id: '1',
-      name: "愛心便當", 
-      price: 80, 
-      category: "餐飲",
-      image: "/images/products/lunchbox.jpg"
-    },
-    { 
-      id: '2',
-      name: "營養飲品", 
-      price: 45, 
-      category: "飲品",
-      image: "/images/products/nutrition-drink.jpg"
-    },
-    { 
-      id: '3',
-      name: "日用品包", 
-      price: 120, 
-      category: "日用品",
-      image: "/images/products/daily-supplies.jpg"
-    },
-    { 
-      id: '4',
-      name: "學習用品", 
-      price: 200, 
-      category: "文具",
-      image: "/images/products/study-supplies.jpg"
-    },
-  ];
+
+
+  const handleGetProducts = async () => {
+    try {
+      const data = await apiGetProducts();
+      setProducts(data.slice(0, 4));
+    } catch ( err ) {
+      console.error("獲取商品失敗:", err);
+    }
+  }
+
+  useEffect(() => {
+    handleGetProducts();
+  }, []);
+  
 
   // 獲取商品圖標（作為後備方案）
   const getProductIcon = (category: string) => {
@@ -138,7 +125,7 @@ const Home: React.FC = () => {
   };
 
   // 直接購買
-  const handleDirectPurchase = () => {
+  const handleDirectPurchase = async () => {
     if (!selectedProduct) return;
 
     const totalCost = selectedProduct.price * quantity;
@@ -154,9 +141,17 @@ const Home: React.FC = () => {
     );
 
     if (confirmPurchase) {
-      // 這裡會實際調用購買 API
-      alert(`購買成功！${selectedProduct.name} x${quantity} 將盡快為您處理`);
+      try {
+        
+        await apiGetProducts();
+        alert(`購買成功！${selectedProduct.name} x${quantity} 將盡快為您處理`);
       handleCloseModal();
+      } catch ( err ) {
+        console.error("購買失敗:", err);
+        alert("購買失敗，請稍後再試");
+      }
+      // 這裡會實際調用購買 API
+      
     }
   };
 

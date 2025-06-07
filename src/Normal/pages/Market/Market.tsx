@@ -331,7 +331,7 @@ const Market: React.FC = () => {
                 disabled={(selectedProduct.price * quantity) > userBalance}
               >
                 <Zap />
-                立即購買
+                f立即購買
               </button>
             </div>
           </div>

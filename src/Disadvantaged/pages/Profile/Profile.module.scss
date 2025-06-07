@@ -1,0 +1,318 @@
+// 色彩變數
+$primary-color: #52C41A;
+$primary-light: #73D13D;
+$secondary-color: #FFB800;
+$accent-color: #17A2B8;
+$text-primary: #2C3E50;
+$text-secondary: #7F8C8D;
+$white: #ffffff;
+$background-light: #F8FAFC;
+$border-color: #E0E0E0;
+$success-color: #52C41A;
+$warning-color: #FFB800;
+$info-color: #17A2B8;
+$error-color: #FF4757;
+
+// 間距變數
+$spacing-xs: 4px;
+$spacing-sm: 8px;
+$spacing-md: 12px;
+$spacing-lg: 16px;
+$spacing-xl: 20px;
+
+// 圓角變數
+$radius-sm: 8px;
+$radius-md: 12px;
+$radius-lg: 16px;
+
+// 陰影變數
+$shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.1);
+$shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+
+.profilePage {
+  min-height: 100vh;
+  background: $background-light;
+  padding-bottom: 80px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 $spacing-lg;
+}
+
+// 個人資料卡片
+.profileCard {
+  background: linear-gradient(135deg, $primary-color 0%, $primary-light 100%);
+  border-radius: $radius-lg;
+  padding: $spacing-xl;
+  margin-top: 20px;
+  margin-bottom: $spacing-xl;
+  color: $white;
+  text-align: center;
+  box-shadow: $shadow-md;
+}
+
+.avatarSection {
+  margin-bottom: $spacing-lg;
+}
+
+.avatar {
+  width: 80px;
+  height: 80px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto $spacing-md;
+  
+  svg {
+    width: 40px;
+    height: 40px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.userName {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: $spacing-sm;
+}
+
+.userType {
+  font-size: 14px;
+  opacity: 0.9;
+  background: rgba(255, 255, 255, 0.2);
+  padding: $spacing-xs $spacing-md;
+  border-radius: $radius-lg;
+  display: inline-block;
+}
+
+// 狀態卡片
+.statusCard {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.statusHeader {
+  display: flex;
+  align-items: center;
+  gap: $spacing-md;
+  margin-bottom: $spacing-lg;
+}
+
+.statusIcon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, $success-color 0%, #73D13D 100%);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: $white;
+    stroke-width: 2;
+  }
+}
+
+.statusTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+.statusGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: $spacing-lg;
+}
+
+.statusItem {
+  text-align: center;
+  
+  .statusNumber {
+    font-size: 20px;
+    font-weight: 700;
+    color: $primary-color;
+    margin-bottom: $spacing-xs;
+  }
+  
+  .statusLabel {
+    font-size: 12px;
+    color: $text-secondary;
+  }
+}
+
+// 功能列表
+.functionList {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  margin-bottom: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.functionTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+}
+
+.functionItem {
+  display: flex;
+  align-items: center;
+  padding: $spacing-lg 0;
+  border-bottom: 1px solid #F0F0F0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+  
+  &:hover {
+    background: $background-light;
+    margin: 0 (-$spacing-lg);
+    padding-left: $spacing-lg;
+    padding-right: $spacing-lg;
+    border-radius: $radius-sm;
+  }
+}
+
+.functionIcon {
+  width: 40px;
+  height: 40px;
+  background: $background-light;
+  border-radius: $radius-sm;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: $spacing-md;
+  
+  svg {
+    width: 20px;
+    height: 20px;
+    color: $primary-color;
+    stroke-width: 2;
+  }
+}
+
+.functionContent {
+  flex: 1;
+}
+
+.functionName {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-xs;
+}
+
+.functionDesc {
+  font-size: 12px;
+  color: $text-secondary;
+}
+
+.functionArrow {
+  svg {
+    width: 16px;
+    height: 16px;
+    color: $text-secondary;
+    stroke-width: 2;
+  }
+}
+
+// 設定區域
+.settingsCard {
+  background: $white;
+  border-radius: $radius-lg;
+  padding: $spacing-lg;
+  box-shadow: $shadow-sm;
+}
+
+.settingsTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-lg;
+}
+
+.settingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid #F0F0F0;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.settingLabel {
+  font-size: 14px;
+  color: $text-primary;
+}
+
+.settingValue {
+  font-size: 14px;
+  color: $text-secondary;
+}
+
+.logoutBtn {
+  width: 100%;
+  padding: $spacing-md;
+  background: linear-gradient(135deg, #FF4757 0%, #FF6B7A 100%);
+  color: $white;
+  border: none;
+  border-radius: $radius-sm;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: $spacing-lg;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
+  }
+}
+
+// 響應式設計
+@media screen and (max-width: 480px) {
+  .container {
+    padding: 0 $spacing-md;
+  }
+  
+  .profileCard {
+    padding: $spacing-lg;
+  }
+  
+  .avatar {
+    width: 60px;
+    height: 60px;
+    
+    svg {
+      width: 30px;
+      height: 30px;
+    }
+  }
+  
+  .userName {
+    font-size: 20px;
+  }
+  
+  .statusGrid {
+    grid-template-columns: 1fr;
+    gap: $spacing-md;
+  }
+}

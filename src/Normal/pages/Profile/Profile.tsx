@@ -1,280 +1,336 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useRef } from 'react';
 import {
   User,
-  Settings,
-  CreditCard,
-  Bell,
-  HelpCircle,
-  Shield,
-  LogOut,
-  ChevronRight,
+  Camera,
+  Edit3,
+  Mail,
+  Phone,
+  MapPin,
+  Calendar,
+  Award,
   Heart,
-  Users,
-  ShoppingBag,
-  AlertTriangle
+  Settings,
+  LogOut,
+  Shield,
+  Bell,
+  Coins,
+  History,
+  HelpCircle,
+  ChevronRight,
+  Save,
+  X
 } from 'lucide-react';
 import Header from '../../components/Header/Header';
-import styles from './Profile.module.scss';
-import { useNavigate } from 'react-router-dom';
+import styles from './Profile.module.css';
+import { useDispatch } from 'react-redux';
+import { setUserStateGetter } from '@/state/getter/getter';
 
 interface UserProfile {
+  id: string;
   name: string;
-  type: 'normal' | 'disadvantaged';
   email: string;
   phone: string;
+  address: string;
   joinDate: string;
-  stats: {
-    donations: number;
-    helped: number;
-    purchases: number;
-  };
+  avatar: string;
+  totalDonated: number;
+  helpedCount: number;
+  rank: string;
 }
 
 const Profile: React.FC = () => {
-  const navigate = useNavigate();
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
-  const [isLoggingOut, setIsLoggingOut] = useState(false);
-
-  // 模擬用戶資料
-  const [userProfile] = useState<UserProfile>({
+  const dispatch = useDispatch();
+  const fileInputRef = useRef<HTMLInputElement>(null);
+  const [isEditing, setIsEditing] = useState(false);
+  const [profile, setProfile] = useState<UserProfile>({
+    id: '001',
     name: '王小明',
-    type: 'normal',
     email: 'wang.xiaoming@example.com',
-    phone: '0912345678',
-    joinDate: '2024-01-15',
-    stats: {
-      donations: 128,
-      helped: 45,
-      purchases: 23
-    }
+    phone: '0912-345-678',
+    address: '台北市信義區忠孝東路四段123號',
+    joinDate: '2023-01-15',
+    avatar: '',
+    totalDonated: 12500,
+    helpedCount: 45,
+    rank: '愛心天使'
   });
 
-  // 選單項目配置
-  const menuSections = [
+  const [editForm, setEditForm] = useState({
+    name: profile.name,
+    email: profile.email,
+    phone: profile.phone,
+    address: profile.address
+  });
+
+  const menuItems = [
     {
-      title: '帳戶設定',
-      items: [
-        {
-          icon: User,
-          title: '個人資料',
-          desc: '修改姓名、聯絡資訊等',
-          action: () => console.log('前往個人資料設定')
-        },
-        {
-          icon: CreditCard,
-          title: '付款方式',
-          desc: '管理信用卡、電子錢包',
-          action: () => console.log('前往付款方式設定')
-        },
-        {
-          icon: Bell,
-          title: '通知設定',
-          desc: '推播、郵件通知偏好',
-          action: () => console.log('前往通知設定')
-        }
-      ]
+      icon: Coins,
+      title: '我的錢包',
+      subtitle: '查看一幣之力餘額',
+      action: () => console.log('前往錢包'),
+      badge: '1,250'
     },
     {
-      title: '服務與支援',
-      items: [
-        {
-          icon: HelpCircle,
-          title: '幫助中心',
-          desc: '常見問題、使用教學',
-          action: () => console.log('前往幫助中心')
-        },
-        {
-          icon: Shield,
-          title: '隱私政策',
-          desc: '查看隱私保護條款',
-          action: () => console.log('查看隱私政策')
-        }
-      ]
+      icon: History,
+      title: '交易紀錄',
+      subtitle: '查看購買與捐贈紀錄',
+      action: () => console.log('前往紀錄')
+    },
+    {
+      icon: Bell,
+      title: '通知設定',
+      subtitle: '管理推播通知偏好',
+      action: () => console.log('通知設定')
+    },
+    {
+      icon: Shield,
+      title: '帳號安全',
+      subtitle: '修改密碼與安全設定',
+      action: () => console.log('安全設定')
+    },
+    {
+      icon: HelpCircle,
+      title: '幫助中心',
+      subtitle: '常見問題與客服聯絡',
+      action: () => console.log('幫助中心')
+    },
+    {
+      icon: Settings,
+      title: '應用程式設定',
+      subtitle: '偏好設定與隱私選項',
+      action: () => console.log('設定')
     }
   ];
 
-  // 登出處理
+  const handleAvatarClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        setProfile(prev => ({
+          ...prev,
+          avatar: event.target?.result as string
+        }));
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleEditToggle = () => {
+    if (isEditing) {
+      // 取消編輯，恢復原始資料
+      setEditForm({
+        name: profile.name,
+        email: profile.email,
+        phone: profile.phone,
+        address: profile.address
+      });
+    }
+    setIsEditing(!isEditing);
+  };
+
+  const handleSave = () => {
+    setProfile(prev => ({
+      ...prev,
+      ...editForm
+    }));
+    setIsEditing(false);
+  };
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setEditForm(prev => ({
+      ...prev,
+      [name]: value
+    }));
+  };
+
   const handleLogout = () => {
-    setShowLogoutModal(true);
-  };
-
-  const confirmLogout = async () => {
-    setIsLoggingOut(true);
-    
-    try {
-      // 模擬登出API調用
-      await new Promise(resolve => setTimeout(resolve, 1500));
-      
-      // 清除本地儲存的用戶資料
-      localStorage.removeItem('userToken');
-      localStorage.removeItem('userProfile');
-      
-      // 導向登入頁面
-      navigate('/login');
-      
-    } catch (error) {
-      console.error('登出失敗:', error);
-      alert('登出失敗，請重試');
-    } finally {
-      setIsLoggingOut(false);
-      setShowLogoutModal(false);
+    const confirmed = window.confirm('確定要登出嗎？');
+    if (confirmed) {
+      localStorage.removeItem('token');
+      dispatch(setUserStateGetter(false)); // toggle
     }
   };
 
-  const cancelLogout = () => {
-    setShowLogoutModal(false);
-  };
-
-  // 點擊遮罩關閉 Modal
-  const handleOverlayClick = (e: React.MouseEvent) => {
-    if (e.target === e.currentTarget) {
-      cancelLogout();
-    }
-  };
-
-  // 格式化加入日期
-  const formatJoinDate = (dateString: string) => {
+  const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return `${date.getFullYear()}年${date.getMonth() + 1}月加入`;
+    return `${date.getFullYear()}年${date.getMonth() + 1}月${date.getDate()}日`;
   };
-
-  // 獲取用戶類型顯示名稱
-  const getUserTypeLabel = (type: string) => {
-    return type === 'normal' ? '愛心天使' : '希望種子';
-  };
-
-  // 阻止滾動穿透
-  useEffect(() => {
-    if (showLogoutModal) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-    
-    return () => {
-      document.body.style.overflow = 'unset';
-    };
-  }, [showLogoutModal]);
 
   return (
     <div className={styles.profilePage}>
-      
       <div className={styles.container}>
         {/* 個人資料卡片 */}
         <div className={styles.profileCard}>
-          <div className={styles.avatar}>
-            <User />
-          </div>
-          <div className={styles.userName}>{userProfile.name}</div>
-          <div className={styles.userType}>
-            {getUserTypeLabel(userProfile.type)} • {formatJoinDate(userProfile.joinDate)}
-          </div>
-          
-          <div className={styles.userStats}>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>{userProfile.stats.donations}</div>
-              <div className={styles.statLabel}>愛心次數</div>
+          <div className={styles.profileHeader}>
+            <div className={styles.avatarSection}>
+              <div className={styles.avatarWrapper} onClick={handleAvatarClick}>
+                {profile.avatar ? (
+                  <img src={profile.avatar} alt="頭像" className={styles.avatar} />
+                ) : (
+                  <div className={styles.avatarPlaceholder}>
+                    <User />
+                  </div>
+                )}
+                <div className={styles.avatarOverlay}>
+                  <Camera />
+                </div>
+              </div>
+              <input
+                ref={fileInputRef}
+                type="file"
+                accept="image/*"
+                onChange={handleAvatarChange}
+                className={styles.hiddenInput}
+              />
             </div>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>{userProfile.stats.helped}</div>
-              <div className={styles.statLabel}>幫助人數</div>
-            </div>
-            <div className={styles.statItem}>
-              <div className={styles.statNumber}>{userProfile.stats.purchases}</div>
-              <div className={styles.statLabel}>購買商品</div>
-            </div>
+            
+            <button 
+              className={styles.editBtn}
+              onClick={handleEditToggle}
+            >
+              {isEditing ? <X /> : <Edit3 />}
+            </button>
           </div>
-        </div>
 
-        {/* 選單區域 */}
-        {menuSections.map((section, sectionIndex) => (
-          <div key={sectionIndex} className={styles.menuSection}>
-            <h3 className={styles.sectionTitle}>{section.title}</h3>
-            {section.items.map((item, itemIndex) => {
-              const IconComponent = item.icon;
-              return (
-                <div 
-                  key={itemIndex} 
-                  className={styles.menuItem}
-                  onClick={item.action}
-                >
-                  <div className={styles.menuIcon}>
-                    <IconComponent />
+          <div className={styles.profileInfo}>
+            {isEditing ? (
+              <div className={styles.editForm}>
+                <div className={styles.formGroup}>
+                  <label>姓名</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={editForm.name}
+                    onChange={handleInputChange}
+                    className={styles.editInput}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={editForm.email}
+                    onChange={handleInputChange}
+                    className={styles.editInput}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>電話</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={editForm.phone}
+                    onChange={handleInputChange}
+                    className={styles.editInput}
+                  />
+                </div>
+                <div className={styles.formGroup}>
+                  <label>地址</label>
+                  <input
+                    type="text"
+                    name="address"
+                    value={editForm.address}
+                    onChange={handleInputChange}
+                    className={styles.editInput}
+                  />
+                </div>
+                <button className={styles.saveBtn} onClick={handleSave}>
+                  <Save />
+                  儲存變更
+                </button>
+              </div>
+            ) : (
+              <>
+                <h2 className={styles.userName}>{profile.name}</h2>
+                <div className={styles.userRank}>
+                  <Award />
+                  {profile.rank}
+                </div>
+                
+                <div className={styles.contactInfo}>
+                  <div className={styles.infoItem}>
+                    <Mail />
+                    <span>{profile.email}</span>
                   </div>
-                  <div className={styles.menuContent}>
-                    <div className={styles.menuTitle}>{item.title}</div>
-                    <div className={styles.menuDesc}>{item.desc}</div>
+                  <div className={styles.infoItem}>
+                    <Phone />
+                    <span>{profile.phone}</span>
                   </div>
-                  <div className={styles.menuArrow}>
-                    <ChevronRight />
+                  <div className={styles.infoItem}>
+                    <MapPin />
+                    <span>{profile.address}</span>
+                  </div>
+                  <div className={styles.infoItem}>
+                    <Calendar />
+                    <span>加入時間：{formatDate(profile.joinDate)}</span>
                   </div>
                 </div>
-              );
-            })}
+              </>
+            )}
           </div>
-        ))}
+        </div>
 
-        {/* 登出選單 */}
-        <div className={styles.menuSection}>
-          <div 
-            className={`${styles.menuItem} ${styles.danger}`}
-            onClick={handleLogout}
-          >
-            <div className={styles.menuIcon}>
-              <LogOut />
+        {/* 愛心統計 */}
+        <div className={styles.statsCard}>
+          <h3 className={styles.statsTitle}>我的愛心足跡</h3>
+          <div className={styles.statsGrid}>
+            <div className={styles.statItem}>
+              <div className={styles.statIcon}>
+                <Coins />
+              </div>
+              <div className={styles.statNumber}>
+                {profile.totalDonated.toLocaleString()}
+              </div>
+              <div className={styles.statLabel}>總捐贈金額</div>
             </div>
-            <div className={styles.menuContent}>
-              <div className={styles.menuTitle}>登出</div>
-              <div className={styles.menuDesc}>退出當前帳戶</div>
-            </div>
-            <div className={styles.menuArrow}>
-              <ChevronRight />
+            <div className={styles.statItem}>
+              <div className={styles.statIcon}>
+                <Heart />
+              </div>
+              <div className={styles.statNumber}>
+                {profile.helpedCount}
+              </div>
+              <div className={styles.statLabel}>幫助人次</div>
             </div>
           </div>
         </div>
 
-        {/* 版本資訊 */}
-        <div className={styles.versionInfo}>
-          <div className={styles.appVersion}>
-            一幣之力 v1.0.0
-          </div>
-          <div className={styles.appCopyright}>
-            © 2024 一幣之力 All Rights Reserved.
-          </div>
+        {/* 功能選單 */}
+        <div className={styles.menuCard}>
+          {menuItems.map((item, index) => (
+            <button
+              key={index}
+              className={styles.menuItem}
+              onClick={item.action}
+            >
+              <div className={styles.menuIcon}>
+                <item.icon />
+              </div>
+              <div className={styles.menuContent}>
+                <div className={styles.menuTitle}>{item.title}</div>
+                <div className={styles.menuSubtitle}>{item.subtitle}</div>
+              </div>
+              {item.badge && (
+                <div className={styles.menuBadge}>{item.badge}</div>
+              )}
+              <ChevronRight className={styles.menuArrow} />
+            </button>
+          ))}
         </div>
+
+        {/* 登出按鈕 */}
+        <button className={styles.logoutBtn} onClick={handleLogout}>
+          <LogOut />
+          登出帳號
+        </button>
       </div>
-
-      {/* 登出確認 Modal */}
-      {showLogoutModal && (
-        <div className={styles.modalOverlay} onClick={handleOverlayClick}>
-          <div className={`${styles.modal} ${showLogoutModal ? styles.open : ''}`}>
-            <div className={styles.modalIcon}>
-              <AlertTriangle />
-            </div>
-            <h3 className={styles.modalTitle}>確認登出</h3>
-            <p className={styles.modalDesc}>
-              您確定要登出嗎？<br />
-              登出後需要重新輸入帳號密碼
-            </p>
-            <div className={styles.modalActions}>
-              <button 
-                className={styles.cancelBtn}
-                onClick={cancelLogout}
-                disabled={isLoggingOut}
-              >
-                取消
-              </button>
-              <button 
-                className={styles.logoutBtn}
-                onClick={confirmLogout}
-                disabled={isLoggingOut}
-              >
-                {isLoggingOut ? '登出中...' : '確認登出'}
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
     </div>
   );
 };

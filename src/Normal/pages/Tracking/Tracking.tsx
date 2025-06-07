@@ -171,7 +171,7 @@ const Tracking: React.FC = () => {
               <div className={styles.statNumber}>
                 {statistics.totalCoins.toLocaleString()}
               </div>
-              <div className={styles.statLabel}>愛心幣之力</div>
+              <div className={styles.statLabel}>一幣之力</div>
             </div>
             <div className={styles.achievementStat}>
               <div className={styles.statNumber}>
@@ -181,33 +181,7 @@ const Tracking: React.FC = () => {
             </div>
           </div>
         </div>
-
-        {/* 快速統計 */}
-        <div className={styles.statsCards}>
-          <div className={styles.statCard}>
-            <div className={`${styles.statCardIcon} ${styles.people}`}>
-              <Users />
-            </div>
-            <div className={styles.statCardNumber}>{statistics.totalPeople}</div>
-            <div className={styles.statCardLabel}>幫助人數</div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={`${styles.statCardIcon} ${styles.heart}`}>
-              <Heart />
-            </div>
-            <div className={styles.statCardNumber}>{statistics.totalItems}</div>
-            <div className={styles.statCardLabel}>愛心次數</div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={`${styles.statCardIcon} ${styles.gift}`}>
-              <Gift />
-            </div>
-            <div className={styles.statCardNumber}>
-              {Math.round(statistics.totalCoins / statistics.totalPeople)}
-            </div>
-            <div className={styles.statCardLabel}>平均貢獻</div>
-          </div>
-        </div>
+        
 
         {/* 愛心足跡標題 */}
         <div className={styles.sectionHeader}>
@@ -249,9 +223,9 @@ const Tracking: React.FC = () => {
                         <Clock />
                         {formatDate(record.timestamp)}
                       </span>
-                      <span className={styles.impactBadge}>
+                      {/* <span className={styles.impactBadge}>
                         {getImpactMessage(record.amount)}
-                      </span>
+                      </span> */}
                     </div>
                   </div>
                 </div>
